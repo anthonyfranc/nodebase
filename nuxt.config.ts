@@ -6,19 +6,10 @@ export default defineNuxtConfig({
       viewport: 'width=device-width, initial-scale=1',
     }
   },
+
   extends: ['@nuxt/ui-pro'],
-  modules: [
-    '@nuxtjs/fontaine',
-    '@nuxtjs/google-fonts',
-    '@nuxt/ui',
-    'nuxt-aos',
-    '@nuxtjs/supabase',
-    '@nuxt/image',
-    '@nuxt/content',
-    '@vueuse/nuxt',
-    'nuxt-og-image',
-    '@nuxthq/studio'
-  ],
+  modules: ['@nuxtjs/fontaine', '@nuxtjs/google-fonts', '@nuxt/ui', 'nuxt-aos', '@nuxtjs/supabase', '@nuxt/image', '@nuxt/content', '@vueuse/nuxt', 'nuxt-og-image', '@nuxthq/studio'],
+
   hooks: {
     // Define `@nuxt/ui` components as global to use them in `.md` (feel free to add those you need)
     'components:extend': (components) => {
@@ -27,6 +18,7 @@ export default defineNuxtConfig({
       globals.forEach((c) => c.global = true)
     }
   },
+
   supabase: {
     key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNqcHR4bWJzdGRncWphYmNqenJtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjYzNTA2NDksImV4cCI6MjA0MTkyNjY0OX0.8SepDNvOZFTe_FfI44UZo_lGxo9Bi7R8yfsDsvjLpbw',
     url: 'https://cjptxmbstdgqjabcjzrm.supabase.co',
@@ -45,15 +37,19 @@ export default defineNuxtConfig({
     },
     redirect: false
   },
+
   icon: {
     serverBundle: 'remote',
   },
+
   colorMode: {
     preference: 'dark'
   },
+
   fontMetrics: {
     fonts: ['DM Sans']
   },
+
   googleFonts: {
     display: 'swap',
     download: true,
@@ -61,8 +57,11 @@ export default defineNuxtConfig({
       'DM+Sans': [400, 500, 600, 700]
     }
   },
+
   studio:{
     enabled: true
   },
-  ssr: true
+
+  ssr: true,
+  compatibilityDate: '2024-09-15'
 })
