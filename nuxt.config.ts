@@ -8,7 +8,7 @@ export default defineNuxtConfig({
   },
 
   extends: ['@nuxt/ui-pro'],
-  modules: ['@nuxtjs/fontaine', '@nuxtjs/google-fonts', '@nuxt/ui', 'nuxt-aos', '@nuxtjs/supabase', '@nuxt/image', '@nuxt/content', '@vueuse/nuxt', 'nuxt-og-image', '@nuxthq/studio'],
+  modules: ['@nuxtjs/fontaine', '@nuxtjs/google-fonts', '@nuxt/ui', 'nuxt-aos', '@nuxtjs/supabase', '@nuxt/image', '@nuxt/content', '@vueuse/nuxt', 'nuxt-og-image', '@nuxt/eslint', '@nuxthq/studio'],
 
   hooks: {
     // Define `@nuxt/ui` components as global to use them in `.md` (feel free to add those you need)
@@ -18,7 +18,6 @@ export default defineNuxtConfig({
       globals.forEach((c) => c.global = true)
     }
   },
-
   supabase: {
     key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNqcHR4bWJzdGRncWphYmNqenJtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjYzNTA2NDksImV4cCI6MjA0MTkyNjY0OX0.8SepDNvOZFTe_FfI44UZo_lGxo9Bi7R8yfsDsvjLpbw',
     url: 'https://cjptxmbstdgqjabcjzrm.supabase.co',
@@ -29,27 +28,20 @@ export default defineNuxtConfig({
         persistSession: true,
         autoRefreshToken: true
       },
-      realtime:{
-        params:{
+      realtime: {
+        params: {
           eventsPerSecond: 2
         }
       }
     },
     redirect: false
   },
-
-  icon: {
-    serverBundle: 'remote',
-  },
-
   colorMode: {
-    preference: 'dark'
+    preference: 'light'
   },
-
   fontMetrics: {
     fonts: ['DM Sans']
   },
-
   googleFonts: {
     display: 'swap',
     download: true,
@@ -57,11 +49,17 @@ export default defineNuxtConfig({
       'DM+Sans': [400, 500, 600, 700]
     }
   },
-
-  studio:{
+  studio: {
     enabled: true
   },
-
+  eslint: {
+    config: {
+      stylistic: {
+        commaDangle: 'never',
+        braceStyle: '1tbs'
+      }
+    }
+  },
   ssr: true,
   compatibilityDate: '2024-09-15'
 })
