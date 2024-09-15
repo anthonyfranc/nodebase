@@ -1,0 +1,124 @@
+badge:
+  title: 'Beta Launching 2025'
+  icon: 'i-heroicons-rocket-launch'
+hero_intro:
+  title: 'Your new favorite <span class="text-primary">no-code</span><br />
+      database'
+  description: 'Unlock the full potential of your data with Nodebase. No coding, no hassle—just powerful,
+<br class="hidden lg:block"/>user-friendly database management.'
+  buttons:
+    - label: 'Get Started'
+      link: '/'
+      size: 'lg'
+      icon: 'i-heroicons-arrow-right-20-solid'
+      color: 'black'
+    - label: 'Contact Us'
+      link: '/contact'
+      size: 'lg'
+      icon: 'i-heroicons-paper-airplane'
+      color: 'white'
+icons:
+  title: 'We support 100+ different cryptocurrencies'
+  crypto: 
+    - shortName: 'LTC'
+      longName: 'Litecoin'
+      iconName: 'cryptocurrency-color:ltc'
+    - shortName: 'BTC'
+      longName: 'Bitcoin'
+      iconName: 'cryptocurrency-color:btc'
+    - shortName: 'USDT'
+      longName: 'Tether'
+      iconName: 'cryptocurrency-color:usdt'
+    - shortName: 'ETH'
+      longName: 'Ethereum'
+      iconName: 'cryptocurrency-color:eth'
+    - shortName: 'DOGE'
+      longName: 'Dogecoin'
+      iconName: 'cryptocurrency-color:doge'
+    - shortName: 'DOT'
+      longName: 'Polkadot'
+      iconName: 'cryptocurrency-color:dot'
+    - shortName: 'POT'
+      longName: 'Potcoin'
+      iconName: 'cryptocurrency-color:pot'
+    - shortname: 'GSC'
+      longName: 'Global Social Chain'
+      iconName: 'cryptocurrency-color:gsc'
+    - shortName: 'MFT'
+      longName: 'Mainframe'
+      iconName: 'cryptocurrency-color:mft'
+    - shortName: 'TNB'
+      longName: 'Time New Bank'
+      iconName: 'cryptocurrency-color:tnb'
+    - shortName: 'SKY'
+      longName: 'Skycoin'
+      iconName: 'cryptocurrency-color:sky'
+hero_features:
+  title: 'Why Choose us?'
+  items:
+    - title: 'Easy to Use'
+      description: 'Our platform is intuitive and easy to navigate to find the information you need, from analytics to breaking news.'
+      icon: 'i-heroicons-computer-desktop'
+    - title: 'Smart Alerts'
+      description: 'Using our intelligent alert system, you will be notified of major market shifts and potential opportunities as soon as they happen.'
+      icon: 'i-heroicons-bell-alert'
+    - title: 'AI Technology'
+      description: 'We use artificial intelligence to analyze the crypto landscape and provide you with valuable information.'
+      icon: 'i-heroicons-sparkles'
+    - title: 'Breaking News'
+      description: 'Stay up to date with the latest news and trends in the crypto world, all in one place.'
+      icon: 'i-heroicons-newspaper'
+    - title: 'Affordable'
+      description: "At a price that won't break the bank, you can access premium features and insightful analysis."
+      icon: 'i-heroicons-credit-card'
+    - title: 'API Access'
+      description: 'We offer a powerful API that allows you to integrate our robust data and insights directly into your own applications.'
+      icon: 'i-heroicons-command-line'
+pricing_hero:
+  title: 'Analytics without <span class="font-bold text-primary-500">breaking</span> the bank'
+  description: 'We provide market analytics with AI powered technology with pricing plans for all needs, <br class="hidden lg:block" /> and a free tier for all users.'
+pricing:
+  - title: "Starter"
+    description: "Get started for free."
+    price:
+      - month: "Free"
+        year: "Free"
+    highlight: false
+    features:
+      - "Real-time pricing updates"
+      - "24 hour historical pricing data"
+      - "Tailored News Feed"
+    button:
+      label: "Coming Soon"
+      color: "white"
+  - title: "Pro"
+    description: "Get access to premium features."
+    price:
+      - month: "$25"
+        year: "$270"
+    highlight: true
+    scale: true
+    features:
+      - "Real-time pricing updates"
+      - "30 day historical pricing data"
+      - "Tailored News Feed"
+      - "Unlimited Smart Alerts"
+      - "API Access"
+    button:
+      label: "Coming Soon"
+      color: "white"
+  - title: "Enterprise"
+    description: "Access to our API for your business needs."
+    price:
+      - month: "Contact Us"
+        year: "Contact Us"
+    features:
+      - "Real-time pricing updates"
+      - "Extended historical pricing data"
+      - "Tailored News Feed"
+      - "Unlimited Smart Alerts"
+      - "API Access"
+      - "Team Access"
+    button:
+      label: "Contact Us"
+      color: "white"

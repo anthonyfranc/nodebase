@@ -1,7 +1,7 @@
 links:
-  - label: "Get Started"
+  - label: "Changelog"
     icon: "i-heroicons-book-open"
-    to: "/"
+    to: "/changelog"
     exactHash: true
   - label: "Contact"
     icon: "i-heroicons-book-open"
@@ -15,12 +15,9 @@ icon:
   name: "solar:bolt-circle-bold"
   style: "color: #14cc76"
   class: "h-5 w-5 mb-0.2 mr-0.5"
-label: "NodeBase"
+label: "Nodebase"
 buttons:
-  - label: "Sign in"
-    color: "gray"
-    to: "/login"
-  - label: "Sign up"
+  - label: "Get Started"
     icon: "i-heroicons-arrow-right-20-solid"
     trailing: true
     color: "black"

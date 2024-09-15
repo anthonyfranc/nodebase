@@ -20,6 +20,7 @@ if (!page.value) {
     <template #right>
       <template v-if="page.buttons">
         <UButton
+          :ui="{ rounded: 'rounded-full' }"
           v-for="(button, index) in page.buttons"
           :key="index"
           :label="button.label"
