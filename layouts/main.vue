@@ -1,10 +1,34 @@
 <template>
-    <slot/>
+    <UHeader :links="links">
+        <template #logo>
+            Nuxt UI Pro
+            <UBadge label="SaaS" variant="subtle" class="mb-0.5" />
+        </template>
+
+        <template #right>
+            <UButton label="Sign in" color="gray" to="/login" />
+            <UButton label="Sign up" icon="i-heroicons-arrow-right-20-solid" trailing color="black" to="/signup"
+                class="hidden lg:flex" />
+        </template>
+
+        <template #panel>
+            <UNavigationTree :links="mapContentNavigation(navigation)" default-open />
+        </template>
+    </UHeader>
+    <slot />
 </template>
 <script setup lang="ts">
-import type { ParsedContent } from '@nuxt/content/dist/runtime/types'
-const { data: navigation } = await useAsyncData('navigation', () => fetchContentNavigation(), { default: () => [] })
-const { data: files } = useLazyFetch<ParsedContent[]>('/api/search.json', { default: () => [], server: false })
+import type { NavItem } from '@nuxt/content'
 
-provide('navigation', navigation)
+const navigation = inject<Ref<NavItem[]>>('navigation', ref([]))
+const links = [{
+    label: 'Docs',
+    to: '/docs'
+}, {
+    label: 'Pricing',
+    to: '/pricing'
+}, {
+    label: 'Blog',
+    to: '/blog'
+}]
 </script>
