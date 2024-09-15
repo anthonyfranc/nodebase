@@ -11,6 +11,11 @@ links:
     icon: "i-heroicons-academic-cap"
     to: "/#pricing"
     exactHash: true
+icon:
+  name: "solar:bolt-circle-bold"
+  style: "color: #14cc76"
+  class: "h-5 w-5 mb-0.2 mr-0.5"
+label: "NodeBase"
 buttons:
   - label: "Sign in"
     color: "gray"

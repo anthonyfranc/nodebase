@@ -11,8 +11,10 @@ if (!page.value) {
 <template>
   <UHeader :links="page.links">
     <template #logo>
-    <UIcon name="solar:bolt-bold-duotone" style="color: #14cc76" class="h-6"/>
-      Nodebase
+      <div class="flex items-center">
+    <UIcon :name="page.icon.name" :style="page.icon.style" :class="page.icon.class" />
+    <span>{{ page.label }}</span>
+  </div>
     </template>
 
     <template #right>
