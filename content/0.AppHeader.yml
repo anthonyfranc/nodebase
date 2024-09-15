@@ -1,0 +1,23 @@
+links:
+  - label: "Get Started"
+    icon: "i-heroicons-book-open"
+    to: "/"
+    exactHash: true
+  - label: "Contact"
+    icon: "i-heroicons-book-open"
+    to: "/contact"
+    exactHash: true
+  - label: "Pricing"
+    icon: "i-heroicons-academic-cap"
+    to: "/#pricing"
+    exactHash: true
+buttons:
+  - label: "Sign in"
+    color: "gray"
+    to: "/login"
+  - label: "Sign up"
+    icon: "i-heroicons-arrow-right-20-solid"
+    trailing: true
+    color: "black"
+    to: "/signup"
+    class: "hidden lg:flex"
