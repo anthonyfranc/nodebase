@@ -1,0 +1,19 @@
+links:
+- id: 'home'
+  label: 'Home'
+  icon: 'solar:home-2-outline'
+  to: '/dashboard/'
+  tooltip:
+    text: 'Home'
+    shortcuts:
+      - 'G'
+      - 'H'
+- id: 'news'
+  label: 'News'
+  icon: 'solar:notebook-bookmark-linear'
+  to: '/dashboard/news'
+  tooltip:
+    text: 'News'
+    shortcuts:
+      - 'G'
+      - 'N'
