@@ -16,7 +16,7 @@ export default defineAppConfig({
         light: 'icon-park-outline:sun'
       },
       notifications: {
-        position: 'top-0 bottom-auto'
+        position: 'top-0 top-auto'
       }
     }
   })
