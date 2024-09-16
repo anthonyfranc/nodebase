@@ -5,7 +5,7 @@
         <NuxtLink to="/" class="flex justify-center"> <!-- Center HomeLogo -->
           <div class="flex items-center">
             <UIcon name="solar:bolt-circle-bold" style="color: #14cc76" class="h-7 w-7 mb-0.2 mr-0.5" />
-            <span class="text-3xl">Nodebase</span>
+            <span class="text-3xl font-semibold">Nodebase</span>
           </div>
         </NuxtLink>
         <UFormGroup label="Email" name="email" class="pt-2 mb-2.5">
