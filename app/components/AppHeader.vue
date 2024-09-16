@@ -11,10 +11,7 @@ if (!page.value) {
 <template>
   <UHeader :links="page.links">
     <template #logo>
-      <div class="flex items-center">
-    <UIcon :name="page.icon.name" :style="page.icon.style" :class="page.icon.class" />
-    <span>{{ page.label }}</span>
-  </div>
+      <AppLogo />
     </template>
 
     <template #right>
