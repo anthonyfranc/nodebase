@@ -5,13 +5,13 @@
         </template>
     </UHeader>
     <div class="h-screen flex flex-col items-center justify-center">
-        <UCard class="max-w-sm w-full">
+        <UCard class="max-w-lg w-full">
             <UForm :validate="validate" :state="state" @submit="onSubmit">
-                <div class="flex gap-x-2 !mt-6">
-                    <UFormGroup label="First name" name="firstName">
+                <div class="flex gap-x-2 !mt-6 w-full">
+                    <UFormGroup label="First name" name="firstName" class="w-1/2">
                         <UInput name="firstName" v-model="state.firstName" placeholder="John" class="flex-1" />
                     </UFormGroup>
-                    <UFormGroup label="Last name" name="lastName">
+                    <UFormGroup label="Last name" name="lastName" class="w-1/2">
                         <UInput name="lastName" v-model="state.lastName" placeholder="Doe" class="flex-1" />
                     </UFormGroup>
                 </div>
@@ -19,28 +19,28 @@
                     <UInput name="email" v-model="state.email" placeholder="you@example.com" />
                 </UFormGroup>
                 <div class="flex gap-x-2 !mt-6">
-                    <UFormGroup label="Password" name="password">
+                    <UFormGroup label="Password" name="password" class="w-1/2">
                         <UInput name="password" v-model="state.password" placeholder="••••••••" type="password"
                             class="flex-1" />
                     </UFormGroup>
-                    <UFormGroup label="Confirm Password" name="confirmPassword">
+                    <UFormGroup label="Confirm Password" name="confirmPassword" class="w-1/2">
                         <UInput name="confirmPassword" v-model="state.confirmPassword" placeholder="••••••••"
                             type="password" class="flex-1" />
                     </UFormGroup>
                 </div>
-                <p class="text-sm !mt-4 !mb-4">By signing up, you agree to our <NuxtLink to="/"
+                <p class="text-sm !mt-4 !mb-4 text-center">By signing up, you agree to our <NuxtLink to="/"
                         class="text-primary font-medium">Terms of Service
                     </NuxtLink>
                 </p>
                 <UButton type="submit" class="!mt-4 !mb-4" block :loading="loading" :disabled="!canSend">
                     Create an account
                 </UButton>
-                <p class="text-sm font-light text-gray-500 dark:text-gray-300">
+                <div class="text-sm font-light text-gray-500 dark:text-gray-300">
                 <div class="py-1 text-center">Already have an account? <NuxtLink to="./login"
                         class="text-primary font-medium">Login
                     </NuxtLink>
                 </div>
-                </p>
+            </div>
             </UForm>
         </UCard>
     </div>
