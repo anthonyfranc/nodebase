@@ -77,6 +77,9 @@ export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
   },
+  build: { 
+    transpile: ["shiki"],
+  },
 
   compatibilityDate: '2024-09-15',
 })

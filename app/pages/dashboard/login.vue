@@ -30,7 +30,7 @@
   </template>
   
   <script setup lang="ts">
-  import type { FormError, FormSubmitEvent } from "#ui/types";
+import type { FormError, FormSubmitEvent } from '#ui/types'
   
   /**
    * user: Retrieves the current user session from Supabase.
