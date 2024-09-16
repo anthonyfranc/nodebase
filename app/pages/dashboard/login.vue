@@ -31,7 +31,7 @@
   
   <script setup lang="ts">
 import type { FormError, FormSubmitEvent } from '#ui/types'
-  
+
   /**
    * user: Retrieves the current user session from Supabase.
    * auth: Provides access to Supabase auth APIs.
