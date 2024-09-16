@@ -9,7 +9,10 @@ export default <Partial<Config>>{
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-      }
+      },
+      animation: {
+        spin: "spin 3s linear infinite",
+      },
     }
   }
 }
