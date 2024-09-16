@@ -65,8 +65,6 @@
 <script setup lang="ts">
 import type { FormError, FormSubmitEvent, MeterColor } from '#ui/types'
 
-
-const user = useSupabaseUser()
 const supabase = useSupabaseClient()
 const toast = useToast()
 
@@ -90,7 +88,8 @@ const canSend = computed(() => {
         state.email &&
         state.password &&
         state.confirmPassword &&
-        passwordStrength.value >= 60 // Require a minimum strength level
+        passwordStrength.value >= 60 &&
+        state.password === state.confirmPassword
     )
 })
 
@@ -110,26 +109,65 @@ const updatePasswordStrength = () => {
 
     let score = 0
 
-    // Basic strength criteria (length, special characters, numbers, uppercase, lowercase)
-    if (password.length >= 8) score += 20
-    if (/[A-Z]/.test(password)) score += 20
-    if (/[a-z]/.test(password)) score += 20
-    if (/[0-9]/.test(password)) score += 20
-    if (/[\W]/.test(password)) score += 20
+    // **Strength criteria:**
+    // 1. Longer password (12+ characters for strong score)
+    if (password.length >= 12) {
+        score += 30 // Give more weight to length
+    } else if (password.length >= 8) {
+        score += 10 // Still passable but weak
+    }
 
-    // Update the reactive strength values
+    // 2. Use of uppercase letters
+    if (/[A-Z]/.test(password)) {
+        score += 20
+    }
+
+    // 3. Use of lowercase letters
+    if (/[a-z]/.test(password)) {
+        score += 10
+    }
+
+    // 4. Use of numbers
+    if (/[0-9]/.test(password)) {
+        score += 20
+    }
+
+    // 5. Use of special characters (e.g. !@#$%)
+    if (/[\W]/.test(password)) {
+        score += 20
+    }
+
+    // 6. Prevent common dictionary words (basic example)
+    // This can be replaced by a more comprehensive dictionary check
+    const commonPasswords = ['password', '123456', 'qwerty', 'abc123', 'admin', 'letmein']
+    if (commonPasswords.some(commonPassword => password.toLowerCase().includes(commonPassword))) {
+        score -= 40 // Penalize heavily for common passwords
+    }
+
+    // 7. Bonus: Avoid predictable patterns like 'abc', '1234', or sequential characters
+    if (/([a-zA-Z0-9])\1{2,}/.test(password)) {
+        score -= 20 // Penalize repeating characters
+    }
+
+    // **Update the reactive strength values**
     passwordStrength.value = score
 
-    // Update strength label and class based on the score
-    if (score <= 40) {
-        strengthLabel.value = 'Weak'
+    // **Update strength label and color based on the score**
+    if (score <= 30) {
+        strengthLabel.value = 'Very Weak'
         strengthColor.value = 'red'
-    } else if (score <= 60) {
+    } else if (score <= 50) {
+        strengthLabel.value = 'Weak'
+        strengthColor.value = 'orange'
+    } else if (score <= 70) {
         strengthLabel.value = 'Moderate'
         strengthColor.value = 'yellow'
-    } else {
+    } else if (score <= 90) {
         strengthLabel.value = 'Strong'
         strengthColor.value = 'green'
+    } else {
+        strengthLabel.value = 'Very Strong'
+        strengthColor.value = 'darkgreen'
     }
 }
 
@@ -171,6 +209,11 @@ async function onSubmit(event: FormSubmitEvent<any>) {
                 description: 'You have successfully created an account, you will be logged in shortly.',
                 color: 'green',
             })
+            const { error } = await supabase.auth.signInWithPassword({
+            email: event.data.email,
+            password: event.data.password,
+        })
+        if (!error) return navigateTo('/dashboard/')
         }
     } catch (err) {
         toast.add({
@@ -180,11 +223,6 @@ async function onSubmit(event: FormSubmitEvent<any>) {
         })
     } finally {
         loading.value = false
-        const { error } = await supabase.auth.signInWithPassword({
-            email: event.data.email,
-            password: event.data.password,
-        })
-        if (!error) return navigateTo('/dashboard/')
     }
 }
 </script>

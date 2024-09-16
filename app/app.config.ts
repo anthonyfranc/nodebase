@@ -77,9 +77,6 @@ export default defineAppConfig({
       },
       tooltip: {
         background: '!bg-background',
-        popper: {
-          strategy: 'absolute'
-        }
       },
       breadcrumb: {
         divider: {

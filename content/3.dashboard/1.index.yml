@@ -8,12 +8,3 @@ links:
     shortcuts:
       - 'G'
       - 'H'
-- id: 'news'
-  label: 'News'
-  icon: 'solar:notebook-bookmark-linear'
-  to: '/dashboard/news'
-  tooltip:
-    text: 'News'
-    shortcuts:
-      - 'G'
-      - 'N'
