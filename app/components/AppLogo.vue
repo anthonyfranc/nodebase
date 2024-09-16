@@ -9,8 +9,8 @@ if (!page.value) {
 </script>
 
 <template>
-<div class="flex items-center">
+  <div class="flex items-center">
     <UIcon :name="page.icon.name" :style="page.icon.style" :class="page.icon.class" />
-    <span>{{ page.label }}</span>
-</div>
+    <span class="font-thin text-2xl">{{ page.label }}</span>
+  </div>
 </template>

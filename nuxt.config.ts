@@ -65,6 +65,7 @@ export default defineNuxtConfig({
 
   uiPro:{
     routerOptions: false
+    
   },
 
   aos: {

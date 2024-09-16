@@ -12,10 +12,10 @@ links:
     to: "/#pricing"
     exactHash: true
 icon:
-  name: "solar:bolt-circle-bold"
+  name: "solar:bolt-bold"
   style: "color: #14cc76"
-  class: "h-5 w-5 mb-0.2 mr-0.5"
-label: "Nodebase"
+  class: "h-6 w-6 mt-1 mr-0.5"
+label: "nodebase"
 buttons:
   - label: "Get Started"
     icon: "i-heroicons-arrow-right-20-solid"

@@ -1,13 +1,12 @@
 <template>
+  <UHeader>
+    <template #logo>
+      <AppLogo class="ml-1" />
+    </template>
+  </UHeader>
   <div class="h-screen flex flex-col items-center justify-center">
     <UCard class="max-w-sm w-full shadow-md">
       <UForm :validate="validate" :state="state" @submit="onSubmit">
-        <NuxtLink to="/" class="flex justify-center"> <!-- Center HomeLogo -->
-          <div class="flex items-center">
-            <UIcon name="solar:bolt-circle-bold" style="color: #14cc76" class="h-7 w-7 mb-0.2 mr-0.5" />
-            <span class="text-3xl font-semibold">Nodebase</span>
-          </div>
-        </NuxtLink>
         <UFormGroup label="Email" name="email" class="pt-2 mb-2.5">
           <UInput name="email" v-model="state.email" placeholder="you@example.com" />
         </UFormGroup>
