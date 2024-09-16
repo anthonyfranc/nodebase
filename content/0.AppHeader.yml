@@ -21,5 +21,5 @@ buttons:
     icon: "i-heroicons-arrow-right-20-solid"
     trailing: true
     color: "black"
-    to: "/signup"
+    to: "/dashboard/login"
     class: "hidden lg:flex"
