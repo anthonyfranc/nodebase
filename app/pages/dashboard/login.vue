@@ -106,8 +106,8 @@
        *
        * @param {Object} data - The data object to clear.
        */
-      for (let key in data) {
-        data[key] = null;
+      for (let key in event.data) {
+        event.data[key] = null;
       }
     }
   }
