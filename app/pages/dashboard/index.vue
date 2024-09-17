@@ -12,7 +12,7 @@
       </UDashboardNavbar>
 
       <!-- Page content -->
-      <UDashboardCard :ui="{ rounded: 'rounded-none' }" title="Beta Access"
+      <UDashboardCard :ui="{ rounded: 'rounded-none' }" 
         description="Welcome to beta access. Please report any issues you encounter." :links="[
           {
             label: 'Report an issue',
