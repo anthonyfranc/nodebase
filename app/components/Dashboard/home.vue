@@ -2,7 +2,7 @@
     <!-- Loading Skeletons -->
     <UDashboardPanelContent v-if="status !== 'success'">
         <div class="grid xl:grid-cols-3 md:grid-cols-2 gap-4 mt-4">
-            <UDashboardCard v-for="n in 6" :key="n"
+            <UDashboardCard v-for="index in Array(6).fill(0)" :key="index"
                 :links="[{ label: 'Manage', color: 'gray', trailingIcon: 'i-heroicons-arrow-right-20-solid' }]">
                 <template #title>
                     <USkeleton class="h-4 mt-2.5 w-[100px]" />
@@ -33,7 +33,7 @@
             <template v-for="database in userDatabases" :key="database.id">
                 <UDashboardCard :title="database.name">
                     <template #links>
-                        <UDropdown :items="dropdownItems">
+                        <UDropdown :items="dropdownItems" @click="id = database.id">
                             <UButton icon="i-heroicons-ellipsis-vertical" color="gray" variant="ghost" />
                         </UDropdown>
                     </template>
@@ -50,25 +50,32 @@
 </template>
 
 <script setup lang="ts">
+import { DashboardDeleteDatabase } from '#components'
 const supabase = useSupabaseClient();
 const user = useSupabaseUser();
 const userDatabases = ref([]);
 const toast = useToast();
-
-definePageMeta({
-    layout: "dashboard",
-});
+const modal = useModal()
+const id = ref(null)
 
 const dropdownItems = [[{
     label: 'Open Editor',
     icon: 'heroicons:arrow-right-circle'
 }, {
     label: 'Delete Database',
-    icon: 'heroicons:trash'
+    icon: 'heroicons:trash',
+    click: () => {
+        modal.open(DashboardDeleteDatabase, {
+            data: id.value,
+        onSuccess () {
+                databaseRefresh();
+            }
+        })
+    }
 }]]
 
 // Fetch database metadata using useAsyncData
-const { status, execute: databaseExecute } = await useAsyncData(
+const { status, execute: databaseExecute, refresh: databaseRefresh } = await useAsyncData(
     "database",
     async () => {
         const { data: databases, error } = await supabase
