@@ -60,7 +60,7 @@ definePageMeta({
 });
 
 const dropdownItems = [[{
-    label: 'Editor',
+    label: 'Open Editor',
     icon: 'heroicons:arrow-right-circle'
 }, {
     label: 'Delete Database',
