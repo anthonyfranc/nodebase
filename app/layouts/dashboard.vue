@@ -24,10 +24,10 @@ const groups = [{
 
 <template>
     <UDashboardLayout>
-        <UDashboardPanel :width="250" collapsible>
+        <UDashboardPanel :width="225" collapsible>
             <UDashboardNavbar class="!border-transparent" :ui="{ left: 'flex-1' }">
                 <template #left>
-                    <AppLogo lass="w-auto pt-1.5 lg:h-6 lg:pt-0" />
+                    <AppLogo class="w-auto pt-1.5 lg:h-6 lg:pt-0" />
                 </template>
             </UDashboardNavbar>
             <UDashboardSidebar>

@@ -10,28 +10,27 @@
           </UTooltip>
         </template>
       </UDashboardNavbar>
-      
+
       <!-- Page content -->
       <UDashboardCard :ui="{ rounded: 'rounded-none' }" title="Beta Access"
-        description="Welcome to beta access. Please report any issues you encounter."
-        :links="[
+        description="Welcome to beta access. Please report any issues you encounter." :links="[
           {
             label: 'Report an issue',
             color: 'gray',
             trailingIcon: 'i-heroicons-arrow-right-20-solid'
           }
         ]" />
-      
+
       <!-- Loading Skeletons -->
       <UDashboardPanelContent v-if="status !== 'success'">
         <div class="grid lg:grid-cols-3 gap-4 mt-4">
           <UDashboardCard v-for="n in 6" :key="n"
             :links="[{ label: 'Manage', color: 'gray', trailingIcon: 'i-heroicons-arrow-right-20-solid' }]">
             <template #title>
-              <USkeleton class="h-4 mt-2 w-[100px]" />
+              <USkeleton class="h-4 mt-2.5 w-[100px]" />
             </template>
             <template #description>
-              <USkeleton class="h-4 mt-2 w-[170px]" />
+              <USkeleton class="h-4 mt-2.5 w-[170px]" />
             </template>
             <template #links>
               <USkeleton class="h-7 w-[85px]" />
@@ -39,7 +38,7 @@
           </UDashboardCard>
         </div>
       </UDashboardPanelContent>
-      
+
       <!-- Actual Data Rendering -->
       <UDashboardPanelContent v-else>
         <UCard class="flex items-center justify-center" v-if="userDatabases.length < 1">
@@ -51,13 +50,24 @@
             </div>
           </div>
         </UCard>
-        
-        <div class="grid lg:grid-cols-3 gap-4 mt-4" v-else> {{ userDatabases }}
+
+        <div class="grid lg:grid-cols-3 gap-4 mt-4" v-else> 
           <template v-for="database in userDatabases" :key="database.id">
-            <UDashboardCard :title="database.name"
-              :links="[{ label: 'Manage', color: 'gray', trailingIcon: 'i-heroicons-arrow-right-20-solid' }]">
+            <UDashboardCard :title="database.name">
+              <template #links>
+                <UDropdown :items="dropdownItems">
+              <UButton
+                icon="i-heroicons-ellipsis-vertical"
+                color="gray"
+                variant="ghost"
+              />
+            </UDropdown>
+              </template>
               <template #description>
-                Tables: {{ database.tableCount || 0 }} | Size: {{ database.totalSize || 0 }} kb
+                <div class="space-x-2 top-1 relative">
+                  <UBadge color="gray" variant="solid">Tables: {{ database.tableCount || 0 }}</UBadge>
+                  <UBadge color="gray" variant="solid">Size: {{ database.totalSize || 0 }} kb</UBadge>
+                </div>
               </template>
             </UDashboardCard>
           </template>
@@ -76,6 +86,20 @@ const toast = useToast();
 definePageMeta({
   layout: "dashboard",
 });
+
+const dropdownItems = [[{
+  label: 'Mark as unread',
+  icon: 'i-heroicons-check-circle'
+}, {
+  label: 'Mark as important',
+  icon: 'i-heroicons-exclamation-circle'
+}], [{
+  label: 'Star thread',
+  icon: 'i-heroicons-star'
+}, {
+  label: 'Mute thread',
+  icon: 'i-heroicons-pause-circle'
+}]]
 
 // Fetch database metadata using useAsyncData
 const { status, execute: databaseExecute } = await useAsyncData(
@@ -102,25 +126,25 @@ const { status, execute: databaseExecute } = await useAsyncData(
         databases.map(async (database) => {
           // Get table count for the specific database
           const { data: tableCountData, error: tableCountError } = await supabase.rpc('count_user_tables', {
-      user_id: user.value.id,
-    });
+            user_id: user.value.id,
+          });
 
           if (tableCountError) {
             console.error("Error fetching table count:", tableCountError);
           }
 
-          const tableCount = tableCountData ? tableCountData.count : 0;
+          const tableCount = tableCountData ? tableCountData[0].count : 0;
 
           // Get total size for the specific database
           const { data: sizeData, error: sizeError } = await supabase.rpc('get_user_tables_size', {
-      user_id: user.value.id,
-    });
+            user_id: user.value.id,
+          });
 
           if (sizeError) {
             console.error("Error fetching database size:", sizeError);
           }
 
-          const totalSize = sizeData ? sizeData.size_kb : 0;
+          const totalSize = sizeData ? sizeData[0].size_kb : 0;
 
           // Add the tableCount and totalSize to the database object
           return {
@@ -143,8 +167,6 @@ const { status, execute: databaseExecute } = await useAsyncData(
 
 // Execute the function after the component is mounted
 onMounted(async () => {
-  setTimeout(async () => {
-    await databaseExecute();
-  }, 400);
+  await databaseExecute();
 });
 </script>
