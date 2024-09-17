@@ -11,6 +11,6 @@ if (!page.value) {
 <template>
   <div class="flex items-center">
     <UIcon :name="page.icon.name" :style="page.icon.style" :class="page.icon.class" />
-    <span class="font-thin text-2xl">{{ page.label }}</span>
+    <span class="font-medium text-2xl">{{ page.label }}</span>
   </div>
 </template>
