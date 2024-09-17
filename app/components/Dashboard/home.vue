@@ -60,17 +60,11 @@ definePageMeta({
 });
 
 const dropdownItems = [[{
-    label: 'Mark as unread',
-    icon: 'i-heroicons-check-circle'
+    label: 'Editor',
+    icon: 'heroicons:arrow-right-circle'
 }, {
-    label: 'Mark as important',
-    icon: 'i-heroicons-exclamation-circle'
-}], [{
-    label: 'Star thread',
-    icon: 'i-heroicons-star'
-}, {
-    label: 'Mute thread',
-    icon: 'i-heroicons-pause-circle'
+    label: 'Delete Database',
+    icon: 'heroicons:trash'
 }]]
 
 // Fetch database metadata using useAsyncData
