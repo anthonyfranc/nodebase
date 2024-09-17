@@ -32,47 +32,54 @@
         <div class="grid xl:grid-cols-3 md:grid-cols-2 gap-4 mt-4" v-else>
             <template v-for="database in userDatabases" :key="database.id">
                 <UDashboardCard :title="database.name">
-                    <template #links>
-                        <UDropdown :items="dropdownItems" @click="id = database.id">
-                            <UButton icon="i-heroicons-ellipsis-vertical" color="gray" variant="ghost" />
-                        </UDropdown>
-                    </template>
-                    <template #description>
-                        <div class="space-x-2 top-1 relative">
-                            <UBadge color="gray" variant="solid">Tables: {{ database.tableCount || 0 }}</UBadge>
-                            <UBadge color="gray" variant="solid">Size: {{ database.totalSize || 0 }} kb</UBadge>
-                        </div>
-                    </template>
-                </UDashboardCard>
+    <template #links>
+      <UDropdown :items="getDropdownItems(database.id)">
+        <UButton icon="i-heroicons-ellipsis-vertical" color="gray" variant="ghost" />
+      </UDropdown>
+    </template>
+    <template #description>
+      <div class="space-x-2 top-1 relative">
+        <UBadge color="gray" variant="solid">Tables: {{ database.table_count || 0 }}</UBadge>
+        <UBadge color="gray" variant="solid">Size: {{ database.total_size_kb || 0 }} kb</UBadge>
+      </div>
+    </template>
+  </UDashboardCard>
             </template>
         </div>
     </UDashboardPanelContent>
 </template>
 
 <script setup lang="ts">
-import { DashboardDeleteDatabase } from '#components'
+import { DashboardDeleteDatabase } from '#components';
 const supabase = useSupabaseClient();
 const user = useSupabaseUser();
 const userDatabases = ref([]);
 const toast = useToast();
-const modal = useModal()
-const id = ref(null)
+const modal = useModal();
 
-const dropdownItems = [[{
-    label: 'Open Editor',
-    icon: 'heroicons:arrow-right-circle'
-}, {
-    label: 'Delete Database',
-    icon: 'heroicons:trash',
-    click: () => {
+const getDropdownItems = (databaseId) => [
+  [
+    {
+      label: 'Open Editor',
+      icon: 'heroicons:arrow-right-circle',
+      click: () => {
+        // Implement the open editor functionality
+      },
+    },
+    {
+      label: 'Delete Database',
+      icon: 'heroicons:trash',
+      click: () => {
         modal.open(DashboardDeleteDatabase, {
-            data: id.value,
-        onSuccess () {
-                databaseRefresh();
-            }
-        })
-    }
-}]]
+          data: databaseId,
+          onSuccess() {
+            databaseRefresh();
+          },
+        });
+      },
+    },
+  ]
+];
 
 // Fetch database metadata using useAsyncData
 const { status, execute: databaseExecute, refresh: databaseRefresh } = await useAsyncData(

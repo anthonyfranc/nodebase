@@ -1,18 +1,14 @@
 <template>
-  <UDashboardModal
-    v-model="open"
-    :prevent-close="true"
-    title="Delete database"
-    :closeButton="false"
-  >
-    <template #description>
-        Are you sure you want to delete this database? This action will remove all tables, rows and columns from the database.
-    </template>
-    <template #footer>
-      <UButton color="red" label="Delete" :loading="loading" @click="deleteDatabase" />
-      <UButton color="white" label="Cancel" @click="modal.close()" />
-    </template>
-  </UDashboardModal>
+    <UDashboardModal v-model="open" :prevent-close="true" title="Delete database" :closeButton="false">
+        <template #description>
+            Are you sure you want to delete this database? This action will remove all tables, rows and columns from the
+            database.
+        </template>
+        <template #footer>
+            <UButton color="red" label="Delete" :loading="loading" @click="deleteDatabase" />
+            <UButton color="white" label="Cancel" @click="modal.close()" />
+        </template>
+    </UDashboardModal>
 </template>
 
 <script setup lang="ts">
@@ -20,7 +16,7 @@ const supabase = useSupabaseClient();
 const open = ref(true)
 const loading = ref(false)
 const modal = useModal()
-const model = defineModel("data")
+const { data } = defineProps(['data']);
 const emit = defineEmits(['success'])
 
 const deleteDatabase = async () => {
@@ -31,7 +27,7 @@ const deleteDatabase = async () => {
         const { error } = await supabase
             .from('user_databases')
             .delete()
-            .eq('id', model.value);
+            .eq('id', data);
 
         if (error) {
             console.log('Error deleting database:', error);
