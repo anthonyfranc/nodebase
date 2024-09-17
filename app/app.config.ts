@@ -19,7 +19,7 @@ export default defineAppConfig({
       base: 'relative text-left rtl:text-right flex flex-col',
       overlay: {
         base: 'fixed inset-0 transition-opacity ease-out duration-300', // Updated here
-        background: 'bg-gray-900/60 dark:bg-gray-800/75',
+        background: 'bg-gray-900/70 dark:bg-gray-800/75',
         transition: {
           default: 'transition-opacity ease-out duration-300',
           enter: 'ease-out duration-300',
@@ -32,7 +32,7 @@ export default defineAppConfig({
       },
       background: 'bg-white dark:bg-gray-900',
       ring: '',
-      rounded: 'rounded-lg',
+      rounded: 'rounded-sm',
       shadow: '',
       width: 'w-full sm:max-w-lg',
       height: '',
