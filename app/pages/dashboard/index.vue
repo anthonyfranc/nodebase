@@ -23,7 +23,7 @@
         <UCard class="flex items-center justify-center">
           <div class="text-center ">
             <UIcon name="solar:database-outline" class="mx-auto mb-2 w-5 h-5" />
-            <p>You don't have any databases.</p>
+            <p class="mt-1 text-gray-500 dark:text-gray-400 text-sm">You don't have any databases.</p>
             <div class="mt-4">
               <UButton color="white" variant="solid" :ui="{ rounded: 'rounded-full' }">Create Database</UButton>
             </div>
