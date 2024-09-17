@@ -10,15 +10,6 @@ const groups = [{
     key: 'links',
     label: 'Go to',
     commands: page.value.links.map(link => ({ ...link, shortcuts: link.tooltip?.shortcuts }))
-}, {
-  key: 'company',
-  label: 'Company',
-  commands: [{
-    id: 'source',
-    label: 'Product Updates',
-    icon: 'solar:bolt-bold-duotone',
-    to: '/dashboard/updates'
-  }]
 }]
 </script>
 
