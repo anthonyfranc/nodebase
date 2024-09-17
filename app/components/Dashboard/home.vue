@@ -1,7 +1,7 @@
 <template>
     <!-- Loading Skeletons -->
     <UDashboardPanelContent v-if="status !== 'success'">
-        <div class="grid lg:grid-cols-3 gap-4 mt-4">
+        <div class="grid xl:grid-cols-3 gap-4 mt-4">
             <UDashboardCard v-for="n in 6" :key="n"
                 :links="[{ label: 'Manage', color: 'gray', trailingIcon: 'i-heroicons-arrow-right-20-solid' }]">
                 <template #title>
@@ -29,7 +29,7 @@
             </div>
         </UCard>
 
-        <div class="grid lg:grid-cols-3 gap-4 mt-4" v-else>
+        <div class="grid xl:grid-cols-4 md:grid-cols-3 gap-4 mt-4" v-else>
             <template v-for="database in userDatabases" :key="database.id">
                 <UDashboardCard :title="database.name">
                     <template #links>
