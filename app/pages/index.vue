@@ -1,6 +1,6 @@
 <template>
     <!--Hero-->
-    <ULandingHero :ui="{
+    <ULandingHero id="landing" :ui="{
         title: 'sm:text-4xl lg:text-6xl md:text-5xl text-3xl',
         description: 'font-thin',
     }" class="m:text-md" data-aos="fade-down" data-aos-delay="50">
@@ -32,7 +32,7 @@
             </template>
         </template>
         <HomeHeroBackground/>
-        <Gradient class="absolute inset-x-0 top-0 w-full block" />
+        <Gradient class="absolute inset-x-0 top-0 w-full block" data-aos="fade-down" data-aos-delay="100" data-aos-duration="2000" data-aos-easing="ease-in-out" data-aos-anchor="#landing"/>
     </ULandingHero>
     <!--End of Hero-->
 </template>
