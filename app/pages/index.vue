@@ -32,6 +32,7 @@
             </template>
         </template>
         <HomeHeroBackground/>
+        <Gradient class="absolute inset-x-0 top-0 w-full block" />
     </ULandingHero>
     <!--End of Hero-->
 </template>
@@ -43,6 +44,7 @@ if (!page.value) {
 }
 
 definePageMeta({
-  layout: "main"
+  layout: "main",
+  color: "dark"
 });
 </script>

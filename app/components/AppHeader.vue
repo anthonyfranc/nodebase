@@ -13,7 +13,9 @@ if (!page.value) {
     <template #logo>
       <AppLogo />
     </template>
-
+    <template #right>
+      <UColorModeButton />
+    </template>
     <template #panel>
         <UHeaderPopoverLinks :links="page.links" />
     </template>
