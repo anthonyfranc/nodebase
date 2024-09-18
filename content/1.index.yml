@@ -2,7 +2,7 @@ badge:
   title: 'Beta Launching 2025'
   icon: 'i-heroicons-rocket-launch'
 hero_intro:
-  title: 'Your new favorite <span class="text-primary">no-code</span><br />
+  title: 'Your new favorite no-code<br />
       database'
   description: 'Unlock the full potential of your data with Nodebase. No coding, no hassle—just powerful,
 <br class="hidden lg:block"/>user-friendly database management.'
