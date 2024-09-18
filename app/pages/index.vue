@@ -43,7 +43,6 @@ if (!page.value) {
 }
 
 definePageMeta({
-  layout: "main",
-  colorMode: "dark"
+  layout: "main"
 });
 </script>
