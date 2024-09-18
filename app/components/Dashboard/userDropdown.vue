@@ -36,7 +36,7 @@ async function logout() {
     const toast = useToast()
     try {
         const { error } = await supabase.auth.signOut();
-        navigateTo('./login');
+        navigateTo('/dashboard/login');
         if (error) {
             toast.add({
                 title: 'Notification',
