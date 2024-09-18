@@ -61,11 +61,7 @@ const modal = useModal();
 const mainStore = useMainStore()
 
 const createDatabase = () => {
-  modal.open(DashboardCreateDatabase, {
-    onSuccess() {
-      databaseRefresh();
-    },
-  });
+  modal.open(DashboardCreateDatabase)
 };
 
 const getDropdownItems = (databaseId) => [
