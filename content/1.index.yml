@@ -8,7 +8,7 @@ hero_intro:
 <br class="hidden lg:block"/>user-friendly database management.'
   buttons:
     - label: 'Get Started'
-      link: '/'
+      link: '/dashboard'
       size: 'lg'
       icon: 'i-heroicons-arrow-right-20-solid'
       color: 'black'

@@ -45,6 +45,21 @@ export default defineAppConfig({
         leaveFrom: 'opacity-100 translate-y-0 sm:scale-100',
         leaveTo: 'opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95',
       },
+    },
+    input:{
+      color: {
+        white: {
+          outline: 'shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-1 focus:ring-gray-400 dark:focus:ring-primary-400',
+        },
+        gray: {
+          outline: 'shadow-sm bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400',
+        },
+      },
+    },
+    button: {
+      default: {
+        loadingIcon: 'line-md:loading-twotone-loop'
+      }
     }
   }
 })

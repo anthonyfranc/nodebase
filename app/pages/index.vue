@@ -3,7 +3,7 @@
     <ULandingHero :ui="{
         title: 'sm:text-4xl lg:text-6xl md:text-5xl text-3xl',
         description: 'font-thin',
-    }" class="m:text-md" data-aos="fade-down" data-aos-delay="100">
+    }" class="m:text-md" data-aos="fade-down" data-aos-delay="50">
         <template #headline>
             <UBadge variant="subtle" size="md"
                 class="hover:bg-primary-100 dark:bg-primary/10 dark:hover:bg-primary/20 transition-color relative font-medium rounded-full shadow-none">
@@ -21,11 +21,9 @@
         <template #links>
             <template v-for="(button, index) in page.hero_intro.buttons" :key="index">
                 <template v-if="index === 0">
-                    <UTooltip text="Coming Soon" :popper="{ placement: 'top', arrow: true }">
                         <UButton :label="button.label" :to="button.link" :size="button.size"
                             :icon="button.icon" :trailing="true" :color="button.color"
                             :ui="{ rounded: 'rounded-full' }"/>
-                    </UTooltip>
                 </template>
                 <template v-else>
                     <UButton :label="button.label" :to="button.link" :size="button.size"
@@ -33,7 +31,7 @@
                 </template>
             </template>
         </template>
-        <HomeHeroBackground />
+        <HomeHeroBackground/>
     </ULandingHero>
     <!--End of Hero-->
 </template>

@@ -17,7 +17,9 @@ const open = ref(true)
 const loading = ref(false)
 const modal = useModal()
 const { data } = defineProps(['data']);
-const emit = defineEmits(['success'])
+const emit = defineEmits<{
+  (e: 'success'): void
+}>()
 
 const deleteDatabase = async () => {
     loading.value = true;

@@ -14,22 +14,6 @@ if (!page.value) {
       <AppLogo />
     </template>
 
-    <template #right>
-      <template v-if="page.buttons">
-        <UButton
-          :ui="{ rounded: 'rounded-full' }"
-          v-for="(button, index) in page.buttons"
-          :key="index"
-          :label="button.label"
-          :color="button.color"
-          :to="button.to"
-          :icon="button.icon"
-          :trailing="button.trailing"
-          :class="button.class"
-        />
-      </template>
-    </template>
-
     <template #panel>
         <UHeaderPopoverLinks :links="page.links" />
     </template>
