@@ -3,7 +3,7 @@
     <ULandingHero id="landing" :ui="{
         title: 'sm:text-4xl lg:text-6xl md:text-5xl text-3xl',
         description: 'font-thin',
-    }" class="m:text-md" data-aos="fade-down" data-aos-delay="50">
+    }" class="m:text-md" data-aos="fade-down" data-aos-delay="100">
         <template #headline>
             <UBadge variant="subtle" size="md"
                 class="hover:bg-primary-100 dark:bg-primary/10 dark:hover:bg-primary/20 transition-color relative font-medium rounded-full shadow-none">
