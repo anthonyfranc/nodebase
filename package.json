@@ -31,9 +31,11 @@
     "vue-router": "latest"
   },
   "devDependencies": {
+    "@iconify-json/line-md": "^1.2.1",
+    "@iconify-json/mdi": "^1.2.0",
     "supabase": "^1.192.5"
   },
   "overrides": {
-  "vue": "latest"
-}
+    "vue": "latest"
+  }
 }
