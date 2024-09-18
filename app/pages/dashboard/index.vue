@@ -17,15 +17,26 @@
           {
             label: 'Report an issue',
             color: 'gray',
-            trailingIcon: 'i-heroicons-arrow-right-20-solid'
+          },
+          {
+            label: 'Create Database',
+            color: 'gray',
+            icon: 'mdi:database-plus-outline',
+            click: () => {
+              modal.open(DashboardCreateDatabase)
+            }
           }
         ]" />
-    <DashboardHome />
+    <DashboardHome :success="true"/>
     </UDashboardPanel>
   </UDashboardPage>
 </template>
 
 <script setup lang="ts">
+import { DashboardCreateDatabase } from '#components';
+
+const modal = useModal()
+
 definePageMeta({
   layout: "dashboard",
 });

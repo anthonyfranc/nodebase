@@ -25,7 +25,7 @@
             </div>
         </UForm>
         <template #title>
-            Create your database
+            Create your Database
         </template>
     </UDashboardModal>
 </template>
@@ -37,9 +37,7 @@ const supabase = useSupabaseClient()
 const user = useSupabaseUser()
 const modal = useModal()
 const loading = ref(false)
-const emit = defineEmits<{
-  (e: 'success'): void
-}>()
+const mainStore = useMainStore()
 
 const state = reactive({
     databaseName: ''
@@ -74,7 +72,7 @@ async function onSubmit(event: FormSubmitEvent<any>) {
             return
         }
         modal.close()
-        emit('success')
+        mainStore.setBoolean(true)
     } catch (err) {
         console.error("Unexpected error:", err)
     }

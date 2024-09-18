@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     }
   },
   extends: ['@nuxt/ui-pro'],
-  modules: ['@nuxt/content', '@nuxt/eslint', '@nuxt/image', 'nuxt-og-image', '@nuxthq/studio', '@nuxt/ui', '@sentry/nuxt/module', '@nuxtjs/google-fonts', 'nuxt-aos', '@nuxtjs/supabase'],
+  modules: ['@nuxt/content', '@nuxt/eslint', '@nuxt/image', 'nuxt-og-image', '@nuxthq/studio', '@nuxt/ui', '@sentry/nuxt/module', '@nuxtjs/google-fonts', 'nuxt-aos', '@nuxtjs/supabase', '@pinia/nuxt'],
   sentry: {
     sourceMapsUploadOptions: {
       org: "nodebase",

@@ -17,9 +17,7 @@ const open = ref(true)
 const loading = ref(false)
 const modal = useModal()
 const { data } = defineProps(['data']);
-const emit = defineEmits<{
-  (e: 'success'): void
-}>()
+const mainStore = useMainStore()
 
 const deleteDatabase = async () => {
     loading.value = true;
@@ -38,7 +36,7 @@ const deleteDatabase = async () => {
 
         // Close modal on success
         modal.close();
-        emit('success')
+        mainStore.setBoolean(true)
     } catch (error) {
         console.error('Unexpected error:', error);
     } finally {
