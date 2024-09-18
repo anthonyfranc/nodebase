@@ -32,7 +32,7 @@
             </template>
         </template>
         <HomeHeroBackground/>
-        <Gradient class="absolute inset-x-0 top-0 w-full block" data-aos="fade-down" data-aos-delay="100" data-aos-duration="2000" data-aos-easing="ease-in-out" data-aos-anchor="#landing"/>
+        <Gradient class="absolute inset-x-0 top-0 w-full block opacity-80"/>
     </ULandingHero>
     <!--End of Hero-->
 </template>
