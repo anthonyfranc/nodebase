@@ -68,10 +68,6 @@ export default defineNuxtConfig({
     
   },
 
-  aos: {
-    once: true
-  },
-
   typescript: {
     strict: false
   },
