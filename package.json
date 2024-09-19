@@ -33,6 +33,7 @@
   "devDependencies": {
     "@iconify-json/line-md": "^1.2.1",
     "@iconify-json/mdi": "^1.2.0",
+    "@iconify-json/solar": "^1.2.0",
     "supabase": "^1.192.5"
   },
   "overrides": {
