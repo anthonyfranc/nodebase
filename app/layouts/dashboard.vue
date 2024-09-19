@@ -15,12 +15,12 @@
                 <!-- Modify the array for UDashboardSidebarLinks -->
                 <UDashboardSidebarLinks :links="sidebarLinks">
                     <template #default="{ link }">
-                        <div v-if="status != 'success' && link.label != 'Home'">
+                        <div v-if="isLoading != 'success' && link.label != 'Home'">
                             <USkeleton class="h-4 w-[125px]" />
                         </div>
                     </template>
                     <template #icon="{ link }">
-                        <div v-if="status != 'success' && link.label != 'Home'">
+                        <div v-if="isLoading != 'success' && link.label != 'Home'">
                             <USkeleton class="h-5 w-5" :ui="{ rounded: 'rounded-full' }" />
                         </div>
                     </template>
@@ -45,43 +45,17 @@
 import { DashboardCreateDatabase } from '#components';
 const { profile, email, user_id, refreshUserProfile } = await useUserProfile()
 const { USER_KEY } = await USER_PROFILE_KEY()
+const { userDatabases, isLoading, error, refresh } = useUserDatabases(profile.id)
 provide(USER_KEY, { profile, email, user_id, refreshUserProfile })
 
 useDashboard()
 const modal = useModal()
-const mainStore = useMainStore()
-const database = ref([])
-const isLoading = ref(true); // Loading state
-
-// Fetch user's databases from Supabase
-const supabase = useSupabaseClient()
-
-const { status, execute: dataExecute } = await useAsyncData(
-    'data',
-    async () => {
-        const { data, error } = await supabase
-            .from('user_databases')
-            .select('id, name')
-            .eq('user_id', profile.id);
-
-        if (!error) {
-            database.value = data;
-        }
-        isLoading.value = false; // Stop loading once data is fetched
-    },
-    {
-        server: false,
-        lazy: false,
-        immediate: false,
-        watch: [mainStore],
-    }
-);
 
 const databaseLinks = computed(() => {
-  if (status.value === 'success') {
+  if (isLoading.value === 'success') {
     return [
       // Map the fetched databases to link objects
-      ...database.value.map((db) => ({
+      ...userDatabases.value.map((db) => ({
         label: db.name,
         to: '',
         chip: 'green',
@@ -135,8 +109,4 @@ const groups = computed(() => [
     commands: databaseLinks.value,
   },
 ]);
-
-onMounted(async () => {
-    await dataExecute();
-});
 </script>
