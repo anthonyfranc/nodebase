@@ -1,36 +1,46 @@
+let userDatabasesCache = null
+let statusCache = null
+let errorCache = null
+
 export function useUserDatabases(userId) {
   const supabase = useSupabaseClient()
   const mainStore = useMainStore()
 
-  const { data: userDatabases, error, refresh, execute: startDatabaseRun, status } = useAsyncData(
-    'user-databases',
-    async () => {
-      const { data, error } = await supabase.rpc('get_user_database_metadata', {
-        p_user_id: userId,
-      })
+  if (!userDatabasesCache) {
+    const { data, error, refresh, execute, status } = useAsyncData(
+      'user-databases',
+      async () => {
+        const { data, error } = await supabase.rpc('get_user_database_metadata', {
+          p_user_id: userId,
+        })
 
-      if (error) {
-        throw error
+        if (error) {
+          throw error
+        }
+
+        return data
+      },
+      {
+        server: false,
+        lazy: false,
+        immediate: false,
+        watch: [mainStore]
       }
+    )
 
-      return data
-    },
-    {
-      server: false,
-      lazy: true,
-      immediate: false, // Prevents immediate execution
-      watch: [userId, mainStore], // Triggers execution when these change
-    }
-  )
+    userDatabasesCache = data
+    statusCache = status
+    errorCache = error
 
+    // Start data fetching once
+    execute()
+  }
 
-  onMounted(async () => {
-    await startDatabaseRun()
-  })
+  const isLoading = computed(() => statusCache.value === 'pending')
+
   return {
-    userDatabases,
-    isLoading: status,
-    error,
-    refresh,
+    userDatabases: userDatabasesCache,
+    isLoading:statusCache,
+    error: errorCache,
   }
 }
