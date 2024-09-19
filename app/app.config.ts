@@ -46,6 +46,26 @@ export default defineAppConfig({
         leaveTo: 'opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95',
       },
     },
+    select:{
+      color: {
+        white: {
+          outline: 'shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-400',
+        },
+        gray: {
+          outline: 'shadow-sm bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-400',
+        },
+      },
+    },
+    textarea:{
+      color: {
+        white: {
+          outline: 'shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-400',
+        },
+        gray: {
+          outline: 'shadow-sm bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-400',
+        },
+      },
+    },
     input:{
       color: {
         white: {

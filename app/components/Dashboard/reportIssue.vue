@@ -1,43 +1,46 @@
 <template>
-    <UDashboardModal :prevent-close="true" :closeButton="false" :ui="{
-        header: {
-            base: '',
-            inner: '',
-            padding: 'px-4 mt-0.5 sm:px-6'
-        },
-        body: {
-            base: 'flex-1 flex flex-col gap-y-3 overflow-y-auto',
-            padding: 'px-4 py-5 sm:pt-5'
-        },
-        footer: {
-            base: 'flex items-center gap-x-1.5 flex-shrink-0',
-            padding: 'px-4 py-4 sm:px-6 sm:pt-0'
-        },
-    }">
+    <UDashboardModal :prevent-close="true" :closeButton="false">
+        <template #title>
+            Report an issue
+        </template>
+        <template #description>
+            We're sorry you're having trouble. Please let us know what's going on and we'll work improving your experience.
+        </template>
         <UForm :validate="validate" :state="state" @submit="onSubmit">
+            <UFormGroup class="w-full pb-2" name="issueSelect">
+                <USelectMenu color="gray" variant="outline" v-model="selected" :options="issueType" placeholder="Choose an issue category" tabindex="0"/>
+            </UFormGroup>
             <UFormGroup class="w-full" name="databaseName">
-                <UInput color="gray" variant="outline" name="databaseName" v-model="state.databaseName" placeholder="enter your database name"
-                    icon="solar:database-outline" tabindex="0" />
+                <UTextarea color="gray" variant="outline" placeholder="Provide details on your selected issue or request" tabindex="0"/>
             </UFormGroup>
             <div class="px-0 pt-4 flex items-center gap-x-1.5 flex-shrink-0">
                 <UButton type="submit" color="black" label="Create" :loading="loading" :disabled="!canSend" />
                 <UButton color="gray" label="Cancel" @click="modal.close()" />
             </div>
         </UForm>
-        <template #title>
-            Create your Database
-        </template>
     </UDashboardModal>
 </template>
 
 <script setup lang="ts">
 import type { FormError, FormSubmitEvent } from '#ui/types'
 
+
 const supabase = useSupabaseClient()
 const user = useSupabaseUser()
 const modal = useModal()
 const loading = ref(false)
 const mainStore = useMainStore()
+
+const issueType = [
+    'Bug',
+    'Performance',
+    'UI/UX',
+    'Feature Request',
+    'Security',
+    'Something else'
+]
+
+const selected = ref([])
 
 const state = reactive({
     databaseName: ''

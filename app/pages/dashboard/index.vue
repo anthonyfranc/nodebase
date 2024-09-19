@@ -17,6 +17,9 @@
           {
             label: 'Report an issue',
             color: 'gray',
+            click: () => {
+              modal.open(DashboardReportIssue)
+            }
           },
           {
             label: 'Create Database',
@@ -33,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import { DashboardCreateDatabase } from '#components';
+import { DashboardCreateDatabase, DashboardReportIssue } from '#components';
 
 const modal = useModal()
 
