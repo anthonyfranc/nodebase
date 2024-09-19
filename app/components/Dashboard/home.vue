@@ -1,6 +1,6 @@
 <template>
   <!-- Loading Skeletons -->
-  <UDashboardPanelContent v-if="isLoading !== 'success'">
+  <UDashboardPanelContent v-if="userDatabasesStore.isLoading !== 'success'">
     <div class="grid xl:grid-cols-3 md:grid-cols-2 gap-4 mt-4">
       <UDashboardCard v-for="index in 6" :key="index"
         :links="[{ label: 'Manage', color: 'gray', trailingIcon: 'i-heroicons-arrow-right-20-solid' }]">
@@ -19,7 +19,7 @@
 
   <!-- Actual Data Rendering -->
   <UDashboardPanelContent v-else>
-    <UCard class="flex items-center justify-center" v-if="userDatabases.length < 1">
+    <UCard class="flex items-center justify-center" v-if="userDatabasesStore.data.length < 1">
       <div class="text-center ">
         <UIcon name="solar:database-outline" class="mx-auto mb-2 w-5 h-5" />
         <p class="mt-1 text-gray-500 dark:text-gray-400 text-sm">You don't have any databases.</p>
@@ -31,7 +31,7 @@
     </UCard>
 
     <div class="grid xl:grid-cols-3 md:grid-cols-2 gap-4 mt-4" v-else>
-      <template v-for="database in userDatabases" :key="database.id">
+      <template v-for="database in userDatabasesStore.data" :key="database.id">
         <UDashboardCard :title="database.name">
           <template #links>
             <UDropdown :items="getDropdownItems(database.id)">
@@ -52,13 +52,10 @@
 
 <script setup lang="ts">
 import { DashboardDeleteDatabase, DashboardCreateDatabase } from '#components';
-const { profile, email, user_id, refreshUserProfile } = await useUserProfile()
-const { USER_KEY } = await USER_PROFILE_KEY()
-const { userDatabases, isLoading, error, refresh } = useUserDatabases(profile.id)
-provide(USER_KEY, { profile, email, user_id, refreshUserProfile })
 
-const modal = useModal();
-
+const userDatabasesStore = useUserDatabasesStore()
+const modal = useModal()
+useDashboard()
 
 const createDatabase = () => {
   modal.open(DashboardCreateDatabase);
