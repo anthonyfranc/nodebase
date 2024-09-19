@@ -1,7 +1,7 @@
 export default defineAppConfig({
   ui: {
     primary: 'green',
-    gray: 'zinc',
+    gray: 'neutral',
     fonts: {
       sans: 'Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'
     },
@@ -12,14 +12,14 @@ export default defineAppConfig({
     },
     modal: {
       wrapper: 'relative z-50',
-      inner: 'fixed inset-0 overflow-y-auto',
+      inner: 'fixed inset-0 overflow-y-auto ',
       container: 'flex min-h-full items-end sm:items-center justify-center text-center',
       padding: 'p-4 sm:p-0',
       margin: 'sm:my-8',
       base: 'relative text-left rtl:text-right flex flex-col',
       overlay: {
-        base: 'fixed inset-0 transition-opacity ease-out duration-300', // Updated here
-        background: 'bg-gray-900/70 dark:bg-gray-800/75',
+        base: 'fixed inset-0',
+        background: 'backdrop-blur-sm',
         transition: {
           default: 'transition-opacity ease-out duration-300',
           enter: 'ease-out duration-300',
@@ -30,8 +30,8 @@ export default defineAppConfig({
           leaveTo: 'opacity-0',
         },
       },
-      background: 'bg-white dark:bg-gray-900',
-      ring: '',
+      background: 'bg-white dark:bg-gray-900/50',
+      ring: 'dark:border dark:border-gray-200/20',
       rounded: 'rounded-sm',
       shadow: '',
       width: 'w-full sm:max-w-lg',
