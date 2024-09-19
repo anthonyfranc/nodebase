@@ -31,7 +31,7 @@ export default defineAppConfig({
         },
       },
       background: 'bg-white dark:bg-gray-900/50',
-      ring: 'dark:border dark:border-gray-200/20',
+      ring: 'dark:border dark:border-gray-200/15',
       rounded: 'rounded-sm',
       shadow: '',
       width: 'w-full sm:max-w-lg',
