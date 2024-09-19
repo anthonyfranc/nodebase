@@ -15,12 +15,12 @@
                 <!-- Modify the array for UDashboardSidebarLinks -->
                 <UDashboardSidebarLinks :links="sidebarLinks">
                     <template #default="{ link }">
-                        <div v-if="status != 'success'">
+                        <div v-if="status != 'success' && link.label != 'Home'">
                             <USkeleton class="h-4 w-[125px]" />
                         </div>
                     </template>
-                    <template #icon>
-                        <div v-if="status != 'success'">
+                    <template #icon="{ link }">
+                        <div v-if="status != 'success' && link.label != 'Home'">
                             <USkeleton class="h-5 w-5" :ui="{ rounded: 'rounded-full' }" />
                         </div>
                     </template>
@@ -43,7 +43,6 @@
 
 <script setup lang="ts">
 import { DashboardCreateDatabase } from '#components';
-const { data: page } = await useAsyncData('page', () => queryContent('/dashboard').findOne())
 const { profile, email, user_id, refreshUserProfile } = await useUserProfile()
 const { USER_KEY } = await USER_PROFILE_KEY()
 provide(USER_KEY, { profile, email, user_id, refreshUserProfile })
@@ -78,52 +77,64 @@ const { status, execute: dataExecute } = await useAsyncData(
     }
 );
 
-// Create a submenu for the "Databases" section
-const databaseLinks = ref([]) // Use ref to reactively update links
-
-watchEffect(() => {
-    // Update databaseLinks when data is fetched
-    if (status) {
-        databaseLinks.value = database.value.map((db) => ({
-            label: db.name,
-            to: '',
-            chip: 'green',
-        }));
-
-        // Add the "Create Database" entry
-        databaseLinks.value.push({
-            label: 'Create Database',
-            click: () => {
-                modal.open(DashboardCreateDatabase);
-            },
-            chip: 'green',
-            icon: 'mdi:plus',
-        });
-    }
+const databaseLinks = computed(() => {
+  if (status.value === 'success') {
+    return [
+      // Map the fetched databases to link objects
+      ...database.value.map((db) => ({
+        label: db.name,
+        to: '',
+        chip: 'green',
+      })),
+      // Add the "Create Database" entry
+      {
+        label: 'Create Database',
+        click: () => {
+          modal.open(DashboardCreateDatabase);
+        },
+        chip: 'green',
+        icon: 'mdi:plus',
+      },
+    ];
+  } else {
+    // Return default placeholder before data is loaded
+    return [
+      {
+        label: 'Loading...',
+        to: '',
+        chip: 'grey',
+        icon: 'mdi:loading',
+      },
+    ];
+  }
 });
 
 // Create a parent "Databases" link with children
 const sidebarLinks = computed(() => [
-    ...page.value.links,
+    {
+        label: 'Home',
+        icon: 'mdi:home-variant-outline',
+        to: '/dashboard',
+    },
     {
         label: 'Database',
         icon: 'mdi:database-outline',
-        children: databaseLinks.value  // Reactively use databaseLinks
-    }
-])
+        children: databaseLinks.value,
+    },
+]);
 
-const groups = [
-    {
-        key: 'links',
-        label: 'Go to',
-        commands: page.value.links.map(link => ({ ...link, shortcuts: link.tooltip?.shortcuts })),
-    },
-    {
-        key: 'databases',
-        label: 'Databases',  // Create a new "Database" menu
-        commands: databaseLinks.value,  // Add the fetched databases as commands
-    },
-]
+const groups = computed(() => [
+  {
+    key: 'links',
+    label: 'Go to',
+    commands: sidebarLinks.value.map((link) => ({ ...link })),
+  },
+  {
+    key: 'databases',
+    label: 'Databases',
+    commands: databaseLinks.value,
+  },
+]);
 
 onMounted(async () => {
     await dataExecute();
