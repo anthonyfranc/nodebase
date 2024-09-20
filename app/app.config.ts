@@ -30,7 +30,7 @@ export default defineAppConfig({
           leaveTo: 'opacity-0',
         },
       },
-      background: 'bg-white dark:bg-gray-900/50',
+      background: 'bg-white dark:bg-gray-900',
       ring: 'dark:border dark:border-gray-200/15 border border-gray-400',
       rounded: 'rounded-sm',
       shadow: '!shadow-sm',
@@ -49,30 +49,30 @@ export default defineAppConfig({
     select:{
       color: {
         white: {
-          outline: 'shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-400',
+          outline: 'shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-600',
         },
         gray: {
-          outline: 'shadow-sm bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-400',
+          outline: 'shadow-sm bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-600',
         },
       },
     },
     textarea:{
       color: {
         white: {
-          outline: 'shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-400',
+          outline: 'shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-600',
         },
         gray: {
-          outline: 'shadow-sm bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-400',
+          outline: 'shadow-sm bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-600',
         },
       },
     },
     input:{
       color: {
         white: {
-          outline: 'shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-400',
+          outline: 'shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-600',
         },
         gray: {
-          outline: 'shadow-sm bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-400',
+          outline: 'shadow-sm bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-600',
         },
       },
     },
