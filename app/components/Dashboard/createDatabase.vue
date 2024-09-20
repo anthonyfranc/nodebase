@@ -7,7 +7,7 @@
         },
         body: {
             base: 'flex-1 flex flex-col gap-y-3 overflow-y-auto',
-            padding: 'px-4 py-5 sm:pt-5'
+            padding: 'px-4 py-5 sm:pt-2'
         },
         footer: {
             base: 'flex items-center gap-x-1.5 flex-shrink-0',

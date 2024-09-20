@@ -19,7 +19,7 @@ export default defineAppConfig({
       base: 'relative text-left rtl:text-right flex flex-col',
       overlay: {
         base: 'fixed inset-0',
-        background: 'backdrop-blur-sm',
+        background: 'backdrop-blur-sm bg-black/40',
         transition: {
           default: 'transition-opacity ease-out duration-300',
           enter: 'ease-out duration-300',
@@ -31,9 +31,9 @@ export default defineAppConfig({
         },
       },
       background: 'bg-white dark:bg-gray-900/50',
-      ring: 'dark:border dark:border-gray-200/15',
+      ring: 'dark:border dark:border-gray-200/15 border border-gray-400',
       rounded: 'rounded-sm',
-      shadow: '',
+      shadow: '!shadow-sm',
       width: 'w-full sm:max-w-lg',
       height: '',
       fullscreen: 'w-screen h-screen',
