@@ -18,7 +18,7 @@
             label: 'Report an issue',
             color: 'gray',
             click: () => {
-              modal.open(DashboardReportIssue)
+              modal.open(LazyDashboardReportIssue)
             }
           },
           {
@@ -26,7 +26,7 @@
             color: 'gray',
             icon: 'mdi:database-plus-outline',
             click: () => {
-              modal.open(DashboardCreateDatabase)
+              modal.open(LazyDashboardCreateDatabase)
             }
           }
         ]" />
@@ -36,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import { DashboardCreateDatabase, DashboardReportIssue } from '#components';
+import { LazyDashboardCreateDatabase, LazyDashboardReportIssue } from '#components';
 
 const modal = useModal()
 

@@ -24,7 +24,7 @@
         <UIcon name="solar:database-outline" class="mx-auto mb-2 w-5 h-5" />
         <p class="mt-1 text-gray-500 dark:text-gray-400 text-sm">You don't have any databases.</p>
         <div class="mt-4">
-          <UButton color="white" variant="solid" :ui="{ rounded: 'rounded-full' }" @click="createDatabase()">Create
+          <UButton color="white" variant="solid" :ui="{ rounded: 'rounded-full' }" @click="modal.open(LazyDashboardCreateDatabase)">Create
             Database</UButton>
         </div>
       </div>
@@ -51,15 +51,11 @@
 </template>
 
 <script setup lang="ts">
-import { DashboardDeleteDatabase, DashboardCreateDatabase } from '#components';
+import { LazyDashboardDeleteDatabase, LazyDashboardCreateDatabase } from '#components';
 
 const userDatabasesStore = useUserDatabasesStore()
 const modal = useModal()
 useDashboard()
-
-const createDatabase = () => {
-  modal.open(DashboardCreateDatabase);
-};
 
 const getDropdownItems = (databaseId) => [
   [
@@ -74,7 +70,7 @@ const getDropdownItems = (databaseId) => [
       label: 'Delete Database',
       icon: 'heroicons:trash',
       click: () => {
-        modal.open(DashboardDeleteDatabase, {
+        modal.open(LazyDashboardDeleteDatabase, {
           data: databaseId,
         });
       },
