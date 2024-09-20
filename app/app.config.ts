@@ -81,5 +81,5 @@ export default defineAppConfig({
         loadingIcon: 'line-md:loading-twotone-loop'
       }
     }
-  }
+  },
 })
