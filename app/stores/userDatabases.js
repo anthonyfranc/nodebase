@@ -51,7 +51,7 @@ export const useUserDatabasesStore = defineStore('userDatabases', () => {
   }
 
   //const isLoading = computed(() => status.value === 'pending')
-  console.log(status)
+
   return {
     data,
     isLoading: status,
