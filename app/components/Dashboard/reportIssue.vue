@@ -62,7 +62,7 @@ async function onSubmit(event: FormSubmitEvent<any>) {
 
     loading.value = true
     try {
-        const { error } = await supabase
+        const { data: issueData, error: issueError } = await supabase
             .from('user_issues')   // Insert into the user_issues table
             .insert({
                 user_email: user.value?.email,       // Get the user's email from the Supabase user object
@@ -70,14 +70,31 @@ async function onSubmit(event: FormSubmitEvent<any>) {
                 description: state.description,      // Issue description
                 created_at: new Date()               // Timestamp (can be omitted as it's set by default in SQL)
             })
-        if (error) {
+            .select() // Include this to get the inserted issue data
+
+        if (issueError) {
             toast.add({
-            description: 'We\'re sorry, there was an error submitting your issue. Please try again later.',
-            icon: 'i-heroicons-check-circle',
-            color: 'red'
-        })
+                description: 'We\'re sorry, there was an error submitting your issue. Please try again later.',
+                icon: 'i-heroicons-check-circle',
+                color: 'red'
+            })
             return
         }
+
+        // Insert into notifications table with a default message
+        const { error: notificationError } = await supabase
+            .from('notifications')
+            .insert({
+                user_id: user.value?.id,             // The ID of the user submitting the issue
+                message: 'We\'ve received your feedback',  // Default notification message
+                type: 'new_issue',          // Store the ID of the issue (from the first insert)
+                created_at: new Date()               // Timestamp (can be omitted if handled by default in SQL)
+            })
+
+        if (notificationError) {
+            console.error("Error inserting notification:", notificationError);
+        }
+
         modal.close()
         toast.add({
             description: 'We\'ve received your concern. We\'ll get back to you soon.',
