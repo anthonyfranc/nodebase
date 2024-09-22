@@ -7,25 +7,29 @@
     </template>
     <template v-else>
         <UTooltip text="Notifications" :shortcuts="['N']">
-            <UDropdown :items="groupedItems" :popper="{ placement: 'bottom-start' }" :ui="{ width: 'w-1/4' }"
-                @click="refreshNotifications">
+            <UPopover @click="refreshNotifications">
                 <UChip inset position="top-right" :color="notifications.length > 0 ? 'green' : 'gray'" class="mr-2">
                     <UAvatar icon="i-heroicons-bell" size="sm" class="border border-gray-200 dark:border-gray-800" />
                 </UChip>
-                <template #account="{ item }">
-                    <div class="text-left">
-                        <p>Signed in as</p>
-                        <p class="truncate font-medium text-gray-900 dark:text-white">{{ item.label }}</p>
+                <template #panel>
+                    <div
+                        class="w-3xl relative focus:outline-none overflow-y-auto scroll-py-1 divide-y divide-gray-100 dark:divide-gray-700 ring-1 ring-gray-200 dark:ring-gray-700 rounded-md shadow-lg bg-white dark:bg-gray-800">
+                        <div class="p-1">
+                            <span
+                                class="group flex items-center gap-1.5 w-full px-1.5 py-1.5 text-sm rounded-md text-gray-700 dark:text-gray-200 cursor-default opacity-50">
+                                <div class="text-left">
+                                    <p>Notifications</p>
+                                </div>
+                            </span>
+                            <div class="p-1">
+                                <span class="group flex items-center gap-1.5 w-full px-1.5 py-1.5 text-sm rounded-md text-gray-700 dark:text-gray-200">
+                                    <span class="truncate">We've received your feedback</span>
+                                </span>                            
+                        </div>
                     </div>
+                </div>
                 </template>
-                <template #item="{ item }" v-if="loadingNotifications">
-                    Loading
-                </template>
-                <template #item="{ item }" v-if="!loadingNotifications">
-                    <span class="truncate">{{ item.label }}</span>
-                    <UIcon :name="item.icon" class="flex-shrink-0 h-4 w-4 text-gray-400 dark:text-gray-500 ms-auto" />
-                </template>
-            </UDropdown>
+            </UPopover>
         </UTooltip>
     </template>
 </template>
