@@ -11,7 +11,7 @@
                 <UAvatar icon="i-heroicons-bell" size="sm" class="border border-gray-200 dark:border-gray-800" />
             </UChip>
             <template #panel>
-                <div class="px-4 leading-6 border-b border-solid border-neutral-200 text-neutral-900 dark:bg-gray-800">
+                <div class="px-4 leading-6 border-b border-solid border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:bg-gray-800">
                     <p
                         class="pt-4 pb-1 m-0 text-sm leading-5 border-0 border-solid border-neutral-200 text-neutral-900 dark:text-gray-100">
                         Notifications
@@ -27,7 +27,7 @@
                         </button>
                     </div>
                 </div>
-                <div class="border-solid dark:border-gray-700 text-neutral-500">
+                <div class="dark:border-gray-700 text-neutral-500">
                     <div class="py-24 items-center justify-center flex flex-col flex-grow gap-y-4"
                         v-if="notifications.length < 1">
                         <UIcon name="i-heroicons-inbox" class="w-8 h-8" />
