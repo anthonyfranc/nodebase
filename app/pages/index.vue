@@ -2,7 +2,7 @@
     <!--Hero-->
     <TransitionRoot appear :show="true" enter="transition ease-out duration-700"
         enter-from="opacity-0 transform -translate-y-20" enter-to="opacity-100 transform translate-y-0"
-        leave="transition ease-in duration-500" leave-from="opacity-100 transform translate-y-0"
+        leave="transition ease-in duration-100" leave-from="opacity-100 transform translate-y-0"
         leave-to="opacity-0 transform -translate-y-20">
         <ULandingHero id="landing" :ui="{
             title: 'sm:text-4xl lg:text-6xl md:text-5xl text-3xl',
