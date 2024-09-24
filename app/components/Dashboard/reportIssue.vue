@@ -58,54 +58,56 @@ const validate = (state: any): FormError[] => {
 }
 
 async function onSubmit(event: FormSubmitEvent<any>) {
-    if (loading.value || !canSend.value) return
+    if (loading.value || !canSend.value) return;
 
-    loading.value = true
+    loading.value = true;
     try {
+        // Insert issue into the `user_issues` table
         const { data: issueData, error: issueError } = await supabase
-            .from('user_issues')   // Insert into the user_issues table
+            .from('user_issues')
             .insert({
-                user_email: user.value?.email,       // Get the user's email from the Supabase user object
-                category: state.category,            // Category selected by the user
+                user_email: user.value?.email,       // Get the user's email
+                category: state.category,            // Selected category (Bug, Performance, etc.)
                 description: state.description,      // Issue description
-                created_at: new Date()               // Timestamp (can be omitted as it's set by default in SQL)
+                created_at: new Date()               // Timestamp
             })
-            .select() // Include this to get the inserted issue data
+            .select();
 
         if (issueError) {
             toast.add({
                 description: 'We\'re sorry, there was an error submitting your issue. Please try again later.',
                 icon: 'i-heroicons-check-circle',
                 color: 'red'
-            })
-            return
+            });
+            return;
         }
 
-        // Insert into notifications table with a default message
+        // Insert notification with category context
         const { error: notificationError } = await supabase
             .from('notifications')
             .insert({
-                user_id: user.value?.id,             // The ID of the user submitting the issue
-                message: 'We\'ve received your feedback',  // Default notification message
-                type: 'new_issue',          // Store the ID of the issue (from the first insert)
-                created_at: new Date()               // Timestamp (can be omitted if handled by default in SQL)
-            })
+                user_id: user.value?.id,             // The ID of the user
+                message: `We\'ve received your issue report`,  // Notification message
+                type: 'new_issue',                   // Type of notification
+                category: state.category,            // Store issue category in notification
+                created_at: new Date()               // Timestamp
+            });
 
         if (notificationError) {
             console.error("Error inserting notification:", notificationError);
         }
 
-        modal.close()
+        modal.close();
         toast.add({
             description: 'We\'ve received your concern. We\'ll get back to you soon.',
             icon: 'i-heroicons-check-circle',
             color: 'green'
-        })
+        });
+
     } catch (err) {
-        console.error("Unexpected error:", err)
-    }
-    finally {
-        loading.value = false
+        console.error("Unexpected error:", err);
+    } finally {
+        loading.value = false;
     }
 }
 </script>
