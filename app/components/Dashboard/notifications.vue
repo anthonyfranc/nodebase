@@ -29,6 +29,11 @@
                                 background: 'bg-gray-100 dark:bg-gray-700'
                             }" />
                         </button>
+                        <button type="button" role="tab"
+                            class="flex gap-2 justify-center items-center py-1 px-0 m-0 text-sm leading-5 text-center normal-case whitespace-nowrap bg-transparent bg-none border-t-0 border-b-0 border-solid transition-all cursor-pointer border-x-0 border-neutral-900 dark:border-gray-300 text-neutral-900 dark:text-gray-300"
+                            tabindex="1">
+                            Archived
+                        </button>
                     </div>
                 </div>
                 <div class="dark:border-gray-700 text-neutral-500">
