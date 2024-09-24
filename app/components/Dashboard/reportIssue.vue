@@ -28,6 +28,7 @@ const supabase = useSupabaseClient()
 const user = useSupabaseUser()
 const modal = useModal()
 const toast = useToast()
+const mainStore = useMainStore()
 const loading = ref(false)
 
 const issueType = [
@@ -96,6 +97,7 @@ async function onSubmit(event: FormSubmitEvent<any>) {
         }
 
         modal.close()
+        mainStore.setBoolean(true)
         toast.add({
             description: 'We\'ve received your concern. We\'ll get back to you soon.',
             icon: 'i-heroicons-check-circle',
