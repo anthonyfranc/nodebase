@@ -110,7 +110,7 @@ const { status, execute: fetchNotifications } = await useAsyncData(
         // Group the notifications into an array of arrays for the dropdown
         groupedItems.value = [
             [{
-                label: user.value?.email || 'ben@example.com',  // Show user's email
+                label: user.value?.email,  // Show user's email
                 slot: 'account',
                 disabled: true
             }],
