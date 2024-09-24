@@ -1,9 +1,12 @@
 <template>
     <UPopover v-if="status === 'success'" ref="popoverRef" :key="`popover-${notifications.length}`" :popper="{ placement: 'bottom-start' }"
         :ui="{ width: 'w-5/6 sm:w-4/6 md:w-4/6 lg:w-2/6', shadow: '!shadow-sm' }">
-        <UChip inset position="top-right" :color="unreadNotifications.length > 0 ? 'green' : 'gray'" class="mr-2">
-            <UAvatar icon="i-heroicons-bell" size="sm" class="border border-gray-200 dark:border-gray-800" />
-        </UChip>
+        <template #default="{ open, close }">
+            <UChip inset position="top-right" :color="unreadNotifications.length > 0 ? 'green' : 'gray'" class="mr-2"
+                @click="handlePopoverToggle(open)">
+                <UAvatar icon="i-heroicons-bell" size="sm" class="border border-gray-200 dark:border-gray-800" />
+            </UChip>
+        </template>
         <template #panel>
             <div
                 class="px-4 leading-6 border-b border-solid border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:bg-gray-800">
@@ -13,10 +16,8 @@
                 <div role="tablist"
                     class="flex flex-grow gap-5 items-center leading-6 border-b border-none text-neutral-900 dark:text-gray-300">
                     <button v-for="tab in tabs" :key="tab.name" type="button" role="tab"
-                        :aria-selected="currentTab === tab.name" :class="[
-                            'flex gap-2 justify-center items-center py-1.5 m-0 text-sm leading-5 text-center normal-case whitespace-nowrap bg-transparent transition-all cursor-pointer',
-                            currentTab === tab.name ? 'border-b-2 border-neutral-900 dark:border-gray-300' : 'border-b-2 border-transparent'
-                        ]" @click="currentTab = tab.name">
+                        :aria-selected="currentTab === tab.name" :class="[currentTab === tab.name ? 'border-b-2 border-neutral-900 dark:border-gray-300' : 'border-b-2 border-transparent']"
+                        @click="currentTab = tab.name">
                         {{ tab.label }}
                         <UAvatar v-if="tab.name === 'inbox'" :alt="unreadNotifications.length.toString()" size="3xs"
                             class="-ml-1" :ui="{ background: 'bg-gray-100 dark:bg-gray-700' }" />
@@ -144,29 +145,30 @@ function getNotificationMessage(notification) {
     }
 }
 
-const popoverRef = ref(null) // Reference for the popover
+// Function to handle refreshing the notifications when popover opens
+function handlePopoverToggle(open) {
+    // Always fetch notifications when the popover is opened
+    if (open) {
+        fetchNotifications()
+    }
+}
 
 async function archiveNotification(notificationId) {
-  // Find the notification by id and mark it as read
-  const notification = notifications.value.find(n => n.id === notificationId)
-  if (notification) {
-    notification.is_read = true // Update the notification in place
+    // Find the notification by id and mark it as read
+    const notification = notifications.value.find(n => n.id === notificationId)
+    if (notification) {
+        notification.is_read = true // Update the notification in place
 
-    // Now update the database
-    const { error } = await supabase
-      .from('notifications')
-      .update({ is_read: true })
-      .eq('id', notificationId)
+        // Now update the database
+        const { error } = await supabase
+            .from('notifications')
+            .update({ is_read: true })
+            .eq('id', notificationId)
 
-    if (error) {
-      console.error('Error archiving notification:', error)
+        if (error) {
+            console.error('Error archiving notification:', error)
+        }
     }
-
-    // Ensure popover stays open
-    if (popoverRef.value) {
-      popoverRef.value.show() // Programmatically keep the popover open
-    }
-  }
 }
 
 onMounted(() => {
