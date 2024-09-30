@@ -16,8 +16,8 @@
     }">
         <UForm :validate="validate" :state="state" @submit="onSubmit">
             <UFormGroup class="w-full" name="databaseName">
-                <UInput color="gray" variant="outline" name="databaseName" v-model="state.databaseName" placeholder="enter your database name"
-                    icon="solar:database-outline" tabindex="0" />
+                <UInput color="gray" variant="outline" name="databaseName" v-model="state.databaseName"
+                    placeholder="enter your database name" icon="solar:database-outline" tabindex="0" />
             </UFormGroup>
             <div class="px-0 pt-4 flex items-center gap-x-1.5 flex-shrink-0">
                 <UButton type="submit" color="black" label="Create" :loading="loading" :disabled="!canSend" />
@@ -71,8 +71,22 @@ async function onSubmit(event: FormSubmitEvent<any>) {
             console.error("Error creating database");
             return
         }
+        // Insert notification with category context
+        const { error: notificationError } = await supabase
+            .from('notifications')
+            .insert({
+                user_id: user.value?.id,             // The ID of the user
+                message: `You've created a new database`,  // Notification message
+                type: 'new_database',                   // Type of notification
+                category: state.databaseName,            // Store issue category in notification
+                created_at: new Date()               // Timestamp
+            });
+        if (notificationError) {
+            console.error("Error inserting notification:", notificationError);
+        }
         modal.close()
         mainStore.setBoolean(true)
+
     } catch (err) {
         console.error("Unexpected error:", err)
     }

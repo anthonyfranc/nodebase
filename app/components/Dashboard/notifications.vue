@@ -38,9 +38,13 @@
                         class="flex gap-x-3 justify-between p-4 leading-6 dark:border-neutral-700 border-neutral-200 text-neutral-900 dark:text-neutral-300">
                         <div class="flex flex-col gap-y-2.5 py-px w-full">
                             <div class="flex items-center max-w-[350px]">
-                                <span class="text-xs transition text-foreground-light hover:text-foreground truncate"
-                                    v-show="item.type == 'new_issue'">
-                                    Report an Issue / {{ item.category }}
+                                <span class="text-xs transition text-foreground-light hover:text-foreground truncate">
+                                    <template v-if="item.type == 'new_issue'">
+                                        <UBadge color="white" variant="solid" size="xs">Report an Issue <UIcon name="ph:dot-outline-fill" class="h-5 w-5"/>{{ item.category }}</UBadge>
+                                    </template>
+                                    <template v-if="item.type == 'new_database'">
+                                        <UBadge color="white" variant="solid" size="xs">New Database <UIcon name="material-symbols-light:line-end-arrow-notch-rounded" class="h-5 w-8"/>{{ item.category }}</UBadge>
+                                    </template>
                                 </span>
                             </div>
                             <div class="flex gap-x-2 items-center">
@@ -120,9 +124,8 @@ function getNotificationTitle(notification) {
     switch (notification.type) {
         case 'new_issue':
             return 'You reported an issue to us'
-        // Add more cases as needed
-        default:
-            return 'New notification'
+        case 'new_database':
+            return 'You created a new database'
     }
 }
 
@@ -132,7 +135,7 @@ function getNotificationMessage(notification) {
             return "We've received your feedback and are currently working on it."
         // Add more cases as needed
         default:
-            return 'New notification'
+            return ''
     }
 }
 
