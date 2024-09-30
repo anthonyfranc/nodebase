@@ -60,10 +60,10 @@ useDashboard()
 const getDropdownItems = (databaseId) => [
   [
     {
-      label: 'Open Editor',
+      label: 'Manage',
       icon: 'heroicons:arrow-right-circle',
       click: () => {
-        // Implement the open editor functionality
+        navigateTo(`/dashboard/database/${databaseId}`);
       },
     },
     {

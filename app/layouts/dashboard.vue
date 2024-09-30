@@ -64,12 +64,13 @@ const databaseLinks = computed(() => {
     return [
       // Map the fetched databases to link objects
       ...userDatabasesStore.data.map((db) => ({
+        id: db.id,
         label: db.name,
-        to: '',
+        to: `/dashboard/database/${db.id}`,
         chip: 'green',
       })),
-      // Add the "Create Database" entry
       {
+        id: 'create-database',
         label: 'Create Database',
         click: () => {
           modal.open(DashboardCreateDatabase);
@@ -79,7 +80,6 @@ const databaseLinks = computed(() => {
       },
     ];
   } else {
-    // Return default placeholder before data is loaded
     return [
       {
         label: 'Loading...',
@@ -99,6 +99,7 @@ const sidebarLinks = computed(() => [
         to: '/dashboard',
     },
     {
+        id: 'databases',
         label: 'Database',
         icon: 'mdi:database-outline',
         children: databaseLinks.value,
