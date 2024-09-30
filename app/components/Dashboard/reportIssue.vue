@@ -98,12 +98,7 @@ async function onSubmit(event: FormSubmitEvent<any>) {
         }
 
         modal.close();
-        toast.add({
-            description: 'We\'ve received your concern. We\'ll get back to you soon.',
-            icon: 'i-heroicons-check-circle',
-            color: 'green'
-        });
-
+        
     } catch (err) {
         console.error("Unexpected error:", err);
     } finally {

@@ -1,5 +1,5 @@
 <template>
-    <svg class="hidden dark:block absolute inset-0 -z-10 h-full w-full stroke-white/5 [mask-image:radial-gradient(100%_100%_at_top,white,transparent)]"
+    <svg class="hidden absolute inset-0 -z-10 h-full w-full stroke-white/5 [mask-image:radial-gradient(100%_100%_at_top,white,transparent)]"
         aria-hidden="true">
         <defs>
             <pattern id="983e3e4c-de6d-4c3f-8d64-b9761d1534cc" width="200" height="200" x="50%" y="-1"
@@ -26,7 +26,7 @@
     </svg>
     <div class="absolute inset-0 flex items-center justify-center gpu blur-[125px] -z-10"
         aria-hidden="true">
-        <div class="aspect-[1108/632] w-full max-w-xl bg-gradient-to-r from-white to-white/25 opacity-20"
+        <div class="aspect-[1108/632] w-full max-w-xl bg-gradient-to-r from-white to-white/25 opacity-10"
             style="clip-path: circle(50% at 50% 50%);" />
     </div>
 </template>

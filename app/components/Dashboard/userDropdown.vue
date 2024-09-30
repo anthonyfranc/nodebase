@@ -51,7 +51,7 @@ async function logout() {
                 color: 'green'
             })
             // Successful logout, navigate to the login page
-            navigateTo('./login');
+            navigateTo('/login');
         }
     } catch (error) {
         // Handle any unexpected errors here

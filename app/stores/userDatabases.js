@@ -4,7 +4,7 @@ export const useUserDatabasesStore = defineStore('userDatabases', () => {
   const status = ref('idle')
   const error = ref(null)
 
-  const MIN_LOADING_TIME = 1000 // Minimum loading time in milliseconds
+  const MIN_LOADING_TIME = 500 // Minimum loading time in milliseconds
   const TIMEOUT_DURATION = 5000 // Maximum request time in milliseconds
 
   async function fetchUserDatabases(userId) {
