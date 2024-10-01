@@ -35,15 +35,15 @@
                 </div>
                 <div v-else class="max-h-96 overflow-y-auto divide-y">
                     <div v-for="item in currentNotifications" :key="item.id"
-                        class="flex gap-x-3 justify-between p-4 leading-6 dark:border-neutral-700 border-neutral-200 text-neutral-900 dark:text-neutral-300">
-                        <div class="flex flex-col gap-y-2.5 py-px w-full">
+                        class="flex gap-x-3 justify-between p-2.5 leading-6 dark:border-neutral-700/80 border-neutral-200/50 text-neutral-900 dark:text-neutral-300">
+                        <div class="flex flex-col gap-y-2 py-px w-full">
                             <div class="flex items-center max-w-[350px]">
-                                <span class="text-xs transition text-foreground-light hover:text-foreground truncate">
+                                <span class="text-xs transition text-foreground-light hover:text-foreground truncate space-x-1">
                                     <template v-if="item.type == 'new_issue'">
-                                        <UBadge color="white" variant="solid" size="xs">Report an Issue <UIcon name="ph:dot-outline-fill" class="h-5 w-5"/>{{ item.category }}</UBadge>
+                                        <UBadge color="orange" variant="subtle" size="xs" :ui="{ rounded: 'rounded-full' }">Platform</UBadge><UBadge color="yellow" variant="subtle" size="xs" :ui="{ rounded: 'rounded-full' }">Report an Issue <UIcon name="ph:dot-outline-fill" class="h-5 w-5"/>{{ item.category }}</UBadge>
                                     </template>
                                     <template v-if="item.type == 'new_database'">
-                                        <UBadge color="white" variant="solid" size="xs">New Database <UIcon name="material-symbols-light:line-end-arrow-notch-rounded" class="h-5 w-8"/>{{ item.category }}</UBadge>
+                                        <UBadge color="green" variant="subtle" size="xs" :ui="{ rounded: 'rounded-full' }">Database</UBadge>
                                     </template>
                                 </span>
                             </div>
