@@ -22,11 +22,11 @@
             <template #panel>
               <div class="overflow-hidden focus:outline-none bg-white dark:bg-gray-800 ring-1 ring-gray-200 dark:ring-gray-700 rounded-lg shadow-sm">
                 <div class="px-2 pt-2 pb-2 border border-gray-200 dark:border-gray-700">
-                  <div class="grid grid-cols-2 gap-2">{{ currentView }}
+                  <div class="grid grid-cols-2 gap-2">
                     <!-- Card View Button -->
                     <button
-                      class="relative flex flex-col items-center px-4 py-3 transition-colors duration-100 rounded shadow-sm ring-1 ring-inset focus:outline-none ring-gray-700 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700/25 dark:hover:bg-gray-700/50 u-text-gray-500 hover:u-text-gray-700"
-                      :class="{ 'ring ring-gray-400': currentView.__name === 'homeCard' }"
+                      class="relative flex flex-col items-center px-4 py-3 transition-colors duration-100 rounded shadow-sm ring-1 ring-inset focus:outline-none ring-gray-200 dark:ring-gray-700 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700/25 dark:hover:bg-gray-700/50 u-text-gray-500 hover:u-text-gray-700"
+                      :class="{ 'ring-1 dark:ring-gray-500 ring-gray-400': currentView.__name === 'homeCard' }"
                       @click="setView('card')"
                     >
                       <UIcon name="material-symbols:responsive-layout-outline-rounded" class="flex-shrink-0 w-5 h-5 mb-1" />
@@ -35,8 +35,8 @@
 
                     <!-- Table View Button -->
                     <button
-                      class="relative flex flex-col items-center px-4 py-3 transition-colors duration-100 rounded shadow-sm ring-1 ring-inset focus:outline-none ring-gray-700 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700/25 dark:hover:bg-gray-700/50 u-text-gray-500 hover:u-text-gray-700"
-                      :class="{ 'ring-2 ring-blue-500': currentView.__name === 'homeTable' }"
+                      class="relative flex flex-col items-center px-4 py-3 transition-colors duration-100 rounded shadow-sm ring-1 ring-inset focus:outline-none ring-gray-200 dark:ring-gray-700 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700/25 dark:hover:bg-gray-700/50 u-text-gray-500 hover:u-text-gray-700"
+                      :class="{ 'ring-1 dark:ring-gray-500 ring-gray-400': currentView.__name === 'homeTable' }"
                       @click="setView('table')"
                     >
                       <UIcon name="material-symbols:view-list-outline-rounded" class="flex-shrink-0 w-5 h-5 mb-1" />
