@@ -61,13 +61,13 @@
                                 {{ getNotificationMessage(item) }}
                             </p>
                         </div>
-                        <div class="flex flex-col items-center gap-y-2" v-show="currentTab === 'inbox'">
+                        <div class="flex flex-col items-center gap-y-2 mt-5" v-show="currentTab === 'inbox'">
                             <UTooltip text="Mark as read" :popper="{ arrow: true }">
                                 <UButton size="xs" color="gray" variant="solid" icon="i-heroicons-archive-box"
                                     @click="archiveNotification(item.id)" :ui="{ rounded: 'rounded-full' }" />
                             </UTooltip>
                         </div>
-                        <div class="flex flex-col items-center gap-y-2" v-show="currentTab === 'archived'">
+                        <div class="flex flex-col items-center gap-y-2 mt-5" v-show="currentTab === 'archived'">
                             <UTooltip text="Mark as unread" :popper="{ arrow: true }">
                                 <UButton size="xs" color="gray" variant="solid" icon="i-heroicons-archive-box"
                                     @click="MarkUnreadNotification(item.id)" :ui="{ rounded: 'rounded-full' }" />
