@@ -9,14 +9,7 @@
 
       <!-- Page content -->
       <UDashboardCard :ui="{ rounded: 'rounded-none' }" 
-        description="Welcome to beta access. Please report any issues you encounter." :links="[
-          {
-            label: 'Report an issue',
-            color: 'gray',
-            click: () => {
-              modal.open(LazyDashboardReportIssue)
-            }
-          },
+         :links="[
           {
             label: 'Create Database',
             color: 'gray',
@@ -25,14 +18,18 @@
               modal.open(LazyDashboardCreateDatabase)
             }
           }
-        ]" />
+        ]">
+        <template #description>
+
+        </template>
+      </UDashboardCard>
     <DashboardHome :success="true"/>
     </UDashboardPanel>
   </UDashboardPage>
 </template>
 
 <script setup lang="ts">
-import { LazyDashboardCreateDatabase, LazyDashboardReportIssue } from '#components';
+import { LazyDashboardCreateDatabase } from '#components';
 
 const modal = useModal()
 

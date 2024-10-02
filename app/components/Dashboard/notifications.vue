@@ -1,5 +1,5 @@
 <template>
-    <UPopover v-if="notificationsStore.notifications.length > 0" ref="popoverRef"
+    <UPopover v-if="notificationsStore.notifications" ref="popoverRef"
         :key="`popover-${notificationsStore.notifications.length}`" :popper="{ placement: 'bottom-start' }"
         :ui="{ width: 'w-5/6 sm:w-4/6 md:w-4/6 lg:w-2/6', shadow: '!shadow-sm' }">
         <UChip inset position="top-right" :color="notificationsStore.unreadNotifications.length > 0 ? 'green' : 'gray'"
@@ -49,7 +49,7 @@
                             </div>
                             <div class="flex gap-x-2 items-center">
                                 <p class="m-0 text-sm leading-5">
-                                    {{ getNotificationTitle(item) }}
+                                    {{ item.message }}
                                     <span class="ml-1 text-xs leading-4 text-neutral-600">
                                         <UseTimeAgo v-slot="{ timeAgo }" :time="item.created_at">
                                             {{ timeAgo }}
@@ -78,9 +78,6 @@
             </div>
         </template>
     </UPopover>
-    <UDropdown v-else text="Notifications" :shortcuts="['N']">
-        <USkeleton class="h-7 w-7 border border-gray-200 dark:border-gray-800 mr-2" :ui="{ rounded: 'rounded-full' }" />
-    </UDropdown>
 </template>
 
 <script setup lang="ts">

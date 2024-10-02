@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import { LazyDashboardReportIssue } from '#components';
 const { USER_KEY } = await USER_PROFILE_KEY()
 const userProfile = inject(USER_KEY) as { profile: { first_name: string; last_name: string; }, email: string }
 
 const { isDashboardSearchModalOpen } = useUIState()
 const { metaSymbol } = useShortcuts()
+const modal = useModal()
 
 const items = computed(() => [
     [{
@@ -12,9 +14,11 @@ const items = computed(() => [
         disabled: true
     }],
     [{
-        label: 'Settings',
-        icon: 'i-heroicons-cog-8-tooth',
-        to: '/dashboard/settings'
+        label: 'Report an issue',
+        icon: 'i-heroicons-question-mark-circle',
+        click: () => {
+              modal.open(LazyDashboardReportIssue)
+        }
     },
     {
         label: 'Command menu',

@@ -87,7 +87,7 @@ async function onSubmit(event: FormSubmitEvent<any>) {
             .from('notifications')
             .insert({
                 user_id: user.value?.id,             // The ID of the user
-                message: `We\'ve received your issue report`,  // Notification message
+                message: 'You reported an issue to us',  // Notification message
                 type: 'new_issue',                   // Type of notification
                 category: state.category,            // Store issue category in notification
                 created_at: new Date()               // Timestamp

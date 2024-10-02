@@ -76,7 +76,7 @@ async function onSubmit(event: FormSubmitEvent<any>) {
             .from('notifications')
             .insert({
                 user_id: user.value?.id,             // The ID of the user
-                message: `You've created a new database`,  // Notification message
+                message: `You've created a new databased named `+state.databaseName,  // Notification message
                 type: 'new_database',                   // Type of notification
                 category: state.databaseName,            // Store issue category in notification
                 created_at: new Date()               // Timestamp
