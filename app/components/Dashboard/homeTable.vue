@@ -30,23 +30,29 @@
                 </div>
             </div>
         </UCard>
-        <div v-else>
-            <UTable :rows="userDatabasesStore.data" :columns="[{
-                key: 'name',
-                label: 'Database'
-            }, {
-                key: 'table_count',
-                label: 'Table Count'
-            }, {
-                key: 'total_size_kb',
-                label: 'Total Size (KB)'
-            }, {
-                key: 'created_at',
-                label: 'Created'
-            }, {
-                key: 'action'
-            }]
-                ">
+        <div v-else class="-p-2 -m-4">
+            <UTable sort-asc-icon="i-heroicons-arrow-up-20-solid" sort-desc-icon="i-heroicons-arrow-down-20-solid"
+                :sort-button="{ icon: 'i-heroicons-sparkles-20-solid', color: 'primary', variant: 'outline', size: '2xs', square: false, ui: { rounded: 'rounded-full' } }"
+                :rows="userDatabasesStore.data" :columns="[{
+                    key: 'name',
+                    label: 'Database',
+                    sortable: true
+                }, {
+                    key: 'table_count',
+                    label: 'Table Count',
+                    sortable: true
+                }, {
+                    key: 'total_size_kb',
+                    label: 'Total Size (KB)',
+                    sortable: true
+                }, {
+                    key: 'created_at',
+                    label: 'Created',
+                    sortable: true
+                }, {
+                    key: 'action'
+                }]
+                    ">
                 <template #created_at-data="{ row }">
                     <UseTimeAgo v-slot="{ timeAgo }" :time="row.created_at">
                         {{ timeAgo }}
