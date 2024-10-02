@@ -11,9 +11,9 @@
       <UDashboardCard :ui="{ rounded: 'rounded-none' }">
         <template #description></template>
         <template #links>
-          <UPopover>
+          <UPopover mode="hover" :popper="{ placement: 'bottom-start' }" :ui="{shadow: 'shadow-sm'}">
             <UButton icon="material-symbols:responsive-layout-outline-rounded" label="Layout" color="gray"
-              class="px-2 py-[5.8px] top-0 relative" :popper="{ placement: 'bottom-start' }" />
+              class="px-2 py-[5.8px] top-0 relative" />
               <template #panel>
               <div
                 class="overflow-hidden focus:outline-none bg-white dark:bg-gray-800 ring-1 ring-gray-200 dark:ring-gray-700 rounded-lg shadow-sm">
