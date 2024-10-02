@@ -40,7 +40,7 @@
                             <div class="flex items-center max-w-[350px]">
                                 <span class="text-xs transition text-foreground-light hover:text-foreground truncate space-x-1">
                                     <template v-if="item.type == 'new_issue'">
-                                        <UBadge color="orange" variant="subtle" size="xs" :ui="{ rounded: 'rounded-full' }">Platform</UBadge><UBadge color="yellow" variant="subtle" size="xs" :ui="{ rounded: 'rounded-full' }">Report an Issue <UIcon name="ph:dot-outline-fill" class="h-5 w-5"/>{{ item.category }}</UBadge>
+                                        <UBadge color="orange" variant="subtle" size="xs" :ui="{ rounded: 'rounded-full' }">Platform</UBadge><UBadge color="yellow" variant="subtle" size="xs" :ui="{ rounded: 'rounded-full' }">Report an Issue <UIcon name="ph:dot-outline-fill" class="h-4 w-5"/>{{ item.category }}</UBadge>
                                     </template>
                                     <template v-if="item.type == 'new_database'">
                                         <UBadge color="green" variant="subtle" size="xs" :ui="{ rounded: 'rounded-full' }">Database</UBadge>
@@ -65,6 +65,12 @@
                             <UTooltip text="Mark as read" :popper="{ arrow: true }">
                                 <UButton size="xs" color="gray" variant="solid" icon="i-heroicons-archive-box"
                                     @click="archiveNotification(item.id)" :ui="{ rounded: 'rounded-full' }" />
+                            </UTooltip>
+                        </div>
+                        <div class="flex flex-col items-center gap-y-2" v-show="currentTab === 'archived'">
+                            <UTooltip text="Mark as unread" :popper="{ arrow: true }">
+                                <UButton size="xs" color="gray" variant="solid" icon="i-heroicons-archive-box"
+                                    @click="MarkUnreadNotification(item.id)" :ui="{ rounded: 'rounded-full' }" />
                             </UTooltip>
                         </div>
                     </div>
@@ -142,5 +148,9 @@ function getNotificationMessage(notification) {
 // Archive a notification
 async function archiveNotification(notificationId) {
     await notificationsStore.archiveNotification(notificationId)
+}
+
+async function MarkUnreadNotification(notificationId) {
+    await notificationsStore.MarkUnreadNotification(notificationId)
 }
 </script>

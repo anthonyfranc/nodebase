@@ -33,6 +33,22 @@ export const useNotificationsStore = defineStore('notifications', () => {
       }
   }
 
+  async function MarkUnreadNotification(notificationId) {
+    const notification = notifications.value.find(n => n.id === notificationId)
+    if (notification) {
+        notification.is_read = false
+    }
+
+    const { error } = await supabase
+        .from('notifications')
+        .update({ is_read: false })
+        .eq('id', notificationId)
+
+    if (error) {
+        console.error('Error marking notification as unread:', error)
+    }
+}
+
   const unreadNotifications = computed(() =>
       notifications.value.filter(n => !n.is_read)
   )
@@ -63,6 +79,7 @@ export const useNotificationsStore = defineStore('notifications', () => {
       notifications,
       fetchNotifications,
       archiveNotification,
+      MarkUnreadNotification,
       unreadNotifications,
       readNotifications,
       subscribeToNotifications
