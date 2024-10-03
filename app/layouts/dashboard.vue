@@ -1,42 +1,42 @@
 <template>
-    <UDashboardLayout>
-        <UDashboardPanel :width="225" collapsible>
-            <UDashboardNavbar class="!border-transparent" :ui="{ left: 'flex-1' }">
-                <template #left>
-                    <AppLogo class="w-auto pt-1.5 lg:h-6 lg:pt-0" />
-                </template>
-            </UDashboardNavbar>
-            <UDashboardSidebar>
-                <template #header>
-                    <UDashboardSearchButton />
-                </template>
+  <UDashboardLayout>
+    <UDashboardPanel :width="225" :resizable="{ min: 225, max: 400 }" collapsible resizable>
+      <UDashboardNavbar class="!border-transparent" :ui="{ left: 'flex-1' }">
+        <template #left>
+          <AppLogo class="w-auto pt-1.5 lg:h-6 lg:pt-0" />
+        </template>
+      </UDashboardNavbar>
+      <UDashboardSidebar>
+        <template #header>
+          <UDashboardSearchButton />
+        </template>
 
-                <!-- Modify the array for UDashboardSidebarLinks -->
-                <UDashboardSidebarLinks :links="sidebarLinks">
-                    <template #default="{ link }">
-                        <div v-if="userDatabasesStore.isLoading != 'success' && link.label != 'Home'">
-                            <USkeleton class="h-4 w-[125px]" />
-                        </div>
-                    </template>
-                    <template #icon="{ link }">
-                        <div v-if="userDatabasesStore.isLoading != 'success' && link.label != 'Home'">
-                            <USkeleton class="h-5 w-5" :ui="{ rounded: 'rounded-full' }" />
-                        </div>
-                    </template>
-                </UDashboardSidebarLinks>
+        <!-- Modify the array for UDashboardSidebarLinks -->
+        <UDashboardSidebarLinks :links="sidebarLinks">
+          <template #default="{ link }">
+            <div v-if="userDatabasesStore.isLoading != 'success' && link.label != 'Home'">
+              <USkeleton class="h-4 w-[125px]" />
+            </div>
+          </template>
+          <template #icon="{ link }">
+            <div v-if="userDatabasesStore.isLoading != 'success' && link.label != 'Home'">
+              <USkeleton class="h-5 w-5" :ui="{ rounded: 'rounded-full' }" />
+            </div>
+          </template>
+        </UDashboardSidebarLinks>
 
-                <template #footer>
-                    <DashboardUserDropdown />
-                </template>
-            </UDashboardSidebar>
-        </UDashboardPanel>
+        <template #footer>
+          <DashboardUserDropdown />
+        </template>
+      </UDashboardSidebar>
+    </UDashboardPanel>
 
-        <slot />
+    <slot />
 
-        <ClientOnly>
-            <LazyUDashboardSearch :groups="groups" />
-        </ClientOnly>
-    </UDashboardLayout>
+    <ClientOnly>
+      <LazyUDashboardSearch :groups="groups" />
+    </ClientOnly>
+  </UDashboardLayout>
 </template>
 
 
@@ -93,17 +93,17 @@ const databaseLinks = computed(() => {
 
 // Create a parent "Databases" link with children
 const sidebarLinks = computed(() => [
-    {
-        label: 'Home',
-        icon: 'mdi:home-variant-outline',
-        to: '/dashboard',
-    },
-    {
-        id: 'databases',
-        label: 'Database',
-        icon: 'mdi:database-outline',
-        children: databaseLinks.value,
-    },
+  {
+    label: 'Home',
+    icon: 'mdi:home-variant-outline',
+    to: '/dashboard',
+  },
+  {
+    id: 'databases',
+    label: 'Database',
+    icon: 'mdi:database-outline',
+    children: databaseLinks.value,
+  },
 ]);
 
 const groups = computed(() => [
